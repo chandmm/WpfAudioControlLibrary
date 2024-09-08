@@ -52,7 +52,12 @@ namespace WpfAudioControlLibrary.Controls
             double length = 45; // The distance from the center to the end of the line
 
             // Map the Value (0 to 100) to an angle (-135 to +135 degrees)
-            double angle = (Value - 50) / 50 * 135;
+            double angle = 270 - (Value * (270/100)) - 45;
+
+            if (angle < 0)
+            {
+                angle = 360 + angle;
+            }
 
             // Convert angle to radians
             double angleRadians = angle * Math.PI / 180;
