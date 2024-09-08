@@ -23,7 +23,7 @@
                 </Ellipse>
                 <Line x:Name="Needle" X1="50" Y1="50" X2="{Binding Position.X}" Y2="{Binding Position.Y}" Stroke="Red" StrokeThickness="2"/>
                 <Label Foreground="Black" Content="{Binding Value}" Background="Transparent" BorderThickness="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-                <TextBlock Grid.Row="1" Text="Volume(dB)" Foreground="White" HorizontalAlignment="Center" Margin="5"/>
+                <TextBlock Grid.Row="1" Text="{Binding ControlLabel}" Foreground="White" HorizontalAlignment="Center" Margin="5"/>
             </Grid>
         </Viewbox>
     </Grid>

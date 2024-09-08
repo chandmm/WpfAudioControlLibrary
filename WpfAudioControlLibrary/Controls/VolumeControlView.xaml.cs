@@ -19,6 +19,16 @@ namespace WpfAudioControlLibrary.Controls
             set { SetValue(ValueProperty, value); }
         }
 
+        public static readonly DependencyProperty ControlLabelProperty =
+            DependencyProperty.Register("ControlLabel", typeof(string), typeof(VolumeControlView),
+                new PropertyMetadata("Volume", OnValueChanged)); // Default value is 50 for the vertical line
+
+        public string ControlLabel
+        {
+            get { return (string)GetValue(ControlLabelProperty); }
+            set { SetValue(ControlLabelProperty, value); }
+        }
+
         private Point _position;
         public Point Position
         {
@@ -63,8 +73,8 @@ namespace WpfAudioControlLibrary.Controls
             double angleRadians = angle * Math.PI / 180;
 
             // Calculate new X2, Y2 based on angle
-            double x2 = Needle.X1 + length * Math.Cos(angleRadians);
-            double y2 = Needle.Y1 - length * Math.Sin(angleRadians);
+            double x2 = Needle.X1 + (length * Math.Cos(angleRadians));
+            double y2 = Needle.Y1 - (length * Math.Sin(angleRadians));
 
             // Update line position
 
