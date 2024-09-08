@@ -9,24 +9,44 @@ namespace WpfAudioControlLibrary.Controls
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        // Default for Value is 0 to represent null/default startup state.
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(double), typeof(VolumeControlView),
-                new PropertyMetadata(50.0, OnValueChanged)); // Default value is 50 for the vertical line
-
-        public double Value
+            DependencyProperty.Register("Value", typeof(int), typeof(VolumeControlView),
+                new PropertyMetadata(0, OnValueChanged)); 
+        public int Value
         {
-            get { return (double)GetValue(ValueProperty); }
+            get { return (int)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
 
         public static readonly DependencyProperty ControlLabelProperty =
             DependencyProperty.Register("ControlLabel", typeof(string), typeof(VolumeControlView),
-                new PropertyMetadata("Volume", OnValueChanged)); // Default value is 50 for the vertical line
+                new PropertyMetadata("Volume", OnValueChanged)); 
 
         public string ControlLabel
         {
             get { return (string)GetValue(ControlLabelProperty); }
             set { SetValue(ControlLabelProperty, value); }
+        }
+
+        public static readonly DependencyProperty MaxProperty =
+            DependencyProperty.Register("Max", typeof(int), typeof(VolumeControlView),
+                new PropertyMetadata(100, OnValueChanged)); 
+
+        public int Max
+        {
+            get { return (int)GetValue(MaxProperty); }
+            set { SetValue(MaxProperty, value); }
+        }
+
+        public static readonly DependencyProperty MinProperty =
+            DependencyProperty.Register("Min", typeof(int), typeof(VolumeControlView),
+                new PropertyMetadata(0, OnValueChanged)); 
+
+        public int Min
+        {
+            get { return (int)GetValue(MinProperty); }
+            set { SetValue(MinProperty, value); }
         }
 
         private Point _position;
@@ -41,11 +61,25 @@ namespace WpfAudioControlLibrary.Controls
             }
         }
 
+        private Point _positionOrigin;
+        public Point PositionOrigin
+        {
+            get => _positionOrigin;
+            set
+            {
+                _positionOrigin = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         public VolumeControlView()
         {
             DataContext = this;
             
             InitializeComponent();
+
+            PositionOrigin = new Point(50, 50);
 
             UpdateLinePosition();
         }
@@ -59,12 +93,13 @@ namespace WpfAudioControlLibrary.Controls
         private void UpdateLinePosition()
         {
             double radiusLine = 45;
+            var value = Value < Min ? Min : Value;
 
-            var splice = Value * 2.7;
+            var splice = value * (270d/Max);
             var angle = ((270 - splice) - 45);
             var radAngle = (angle < 0 ? 360 + angle : angle) * Math.PI / 180;
 
-            Position = new Point((int)(Needle.X1 + radiusLine * Math.Cos(radAngle)), (int)(Needle.Y1 - radiusLine * Math.Sin(radAngle)));
+            Position = new Point((int)(PositionOrigin.X + radiusLine * Math.Cos(radAngle)), (int)(PositionOrigin.Y - radiusLine * Math.Sin(radAngle)));
         }
 
         #region Events
