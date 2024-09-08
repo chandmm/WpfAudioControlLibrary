@@ -58,27 +58,13 @@ namespace WpfAudioControlLibrary.Controls
 
         private void UpdateLinePosition()
         {
-            // Line length remains constant
-            double length = 45; // The distance from the center to the end of the line
+            double radiusLine = 45;
 
-            // Map the Value (0 to 100) to an angle (-135 to +135 degrees)
-            double angle = 270 - (Value * (270/100)) - 45;
+            var splice = Value * 2.7;
+            var angle = ((270 - splice) - 45);
+            var radAngle = (angle < 0 ? 360 + angle : angle) * Math.PI / 180;
 
-            if (angle < 0)
-            {
-                angle = 360 + angle;
-            }
-
-            // Convert angle to radians
-            double angleRadians = angle * Math.PI / 180;
-
-            // Calculate new X2, Y2 based on angle
-            double x2 = Needle.X1 + (length * Math.Cos(angleRadians));
-            double y2 = Needle.Y1 - (length * Math.Sin(angleRadians));
-
-            // Update line position
-
-            Position = new Point(x2, y2);
+            Position = new Point((int)(Needle.X1 + radiusLine * Math.Cos(radAngle)), (int)(Needle.Y1 - radiusLine * Math.Sin(radAngle)));
         }
 
         #region Events
