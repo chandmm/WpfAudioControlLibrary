@@ -21,7 +21,7 @@ namespace WpfAudioControlLibrary.Controls
 
         public static readonly DependencyProperty ControlLabelProperty =
             DependencyProperty.Register("ControlLabel", typeof(string), typeof(VolumeControlView),
-                new PropertyMetadata("Volume", OnValueChanged)); 
+                new PropertyMetadata("Volume", null)); 
 
         public string ControlLabel
         {
