@@ -20,23 +20,25 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
-        <SolidColorBrush x:Key="SliderThumb.Static.Background" Color="Red"/>
+
+        <SolidColorBrush x:Key="SliderThumb.Static.Background" Color="#350a01"/>
+        <SolidColorBrush x:Key="SliderThumb.Static.Background2" Color="OrangeRed"/>
+        <SolidColorBrush x:Key="SliderThumb.Static.Background3" Color="White"/>
         <SolidColorBrush x:Key="SliderThumb.Static.Border" Color="#FFACACAC"/>
-        <SolidColorBrush x:Key="SliderThumb.Static.Foreground" Color="#FFE5E5E5"/>
+        <SolidColorBrush x:Key="SliderThumb.Static.Foreground" Color="CornflowerBlue"/>
         <SolidColorBrush x:Key="SliderThumb.MouseOver.Background" Color="#FFDCECFC"/>
         <SolidColorBrush x:Key="SliderThumb.MouseOver.Border" Color="#FF7Eb4EA"/>
         <SolidColorBrush x:Key="SliderThumb.Pressed.Background" Color="#FFDAECFC"/>
         <SolidColorBrush x:Key="SliderThumb.Pressed.Border" Color="#FF569DE5"/>
         <SolidColorBrush x:Key="SliderThumb.Disabled.Background" Color="#FFF0F0F0"/>
         <SolidColorBrush x:Key="SliderThumb.Disabled.Border" Color="#FFD9D9D9"/>
-        <SolidColorBrush x:Key="SliderThumb.Track.Background" Color="Orange"/>
-        <SolidColorBrush x:Key="SliderThumb.Track.Border" Color="Red"/>
+        <SolidColorBrush x:Key="SliderThumb.Track.Background" Color="Cyan"/>
+        <SolidColorBrush x:Key="SliderThumb.Track.Border" Color="Blue"/>
         <ControlTemplate x:Key="SliderThumbHorizontalDefault" TargetType="{x:Type Thumb}">
             <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
                 <Viewbox Grid.Row="0" Stretch="Fill">
@@ -50,11 +52,19 @@
                 </Viewbox>
                 <Viewbox Grid.Row="1" Stretch="Fill">
                     <Path x:Name="gripEnd" Data="m 103.45208,162.202 1.57061,3.25596 1.5627,-3.25991 z" 
-                          Fill="{StaticResource SliderThumb.Static.Background}" 
+                          Fill="{StaticResource SliderThumb.Static.Background2}" 
                           Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
                           SnapsToDevicePixels="True" Stretch="UniformToFill" 
-                          StrokeThickness="1" UseLayoutRounding="True" 
+                          StrokeThickness="5" UseLayoutRounding="True" 
                           VerticalAlignment="Center"/>
+                </Viewbox>
+                <Viewbox Grid.Row="1" Stretch="Fill">
+                    <Path Data="m 103.45208,162.202 1.57061,3.25596 1.5627,-3.25991 z" 
+                      Fill="{StaticResource SliderThumb.Static.Background3}" 
+                      Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
+                      SnapsToDevicePixels="True" Stretch="UniformToFill" 
+                      StrokeThickness="5" UseLayoutRounding="True" 
+                      VerticalAlignment="Center"/>
                 </Viewbox>
             </Grid>
             <ControlTemplate.Triggers>
@@ -85,17 +95,37 @@
                           Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
                           SnapsToDevicePixels="True" 
                           Stretch="UniformToFill" StrokeThickness="1" 
-                          UseLayoutRounding="True" 
-                          VerticalAlignment="Center"/>
-                                    </Viewbox>
-                    <Viewbox Stretch="Fill" Grid.Row="1">
-                        <Path x:Name="gripEnd" Data="m 103.45208,162.202 1.57061,3.25596 1.5627,-3.25991 z" 
-                            Fill="{StaticResource SliderThumb.Static.Background}" 
+                          UseLayoutRounding="True"/>
+                    </Viewbox>
+                <Viewbox Stretch="Fill" Opacity="0.6">
+                    <Path Data="m 103.45451,131.49792 h 3.13316 v 30.70489 h -3.13316 z" 
+                      Fill="{StaticResource SliderThumb.Static.Background2}" 
+                      Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
+                      SnapsToDevicePixels="True" 
+                      Stretch="UniformToFill" StrokeThickness="1" 
+                      UseLayoutRounding="True"/>
+                </Viewbox>
+                <Viewbox Stretch="Fill" Grid.Row="1">
+                        <Path x:Name="gripEnd" Data="m 103.47186,162.202 1.52314,3.252 1.57457,-3.252 z" 
+                            Fill="{StaticResource SliderThumb.Static.Background2}" 
                             Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
                             SnapsToDevicePixels="True" Stretch="UniformToFill" 
-                            StrokeThickness="1" UseLayoutRounding="True" 
-                            VerticalAlignment="Center"/>
+                              Margin="1,0,0,0"
+                            StrokeThickness="1" UseLayoutRounding="True" Width="60"/>
                     </Viewbox>
+                    <Viewbox Grid.Row="1">
+                    <Viewbox Grid.Row="1" Stretch="Fill" Opacity="0.8">
+                        <Viewbox.Effect>
+                            <BlurEffect/>
+                        </Viewbox.Effect>
+                        <Path Data="m 103.45208,162.202 1.57061,3.25596 1.5627,-3.25991 z" 
+                          Fill="{StaticResource SliderThumb.Static.Background3}" 
+                          Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
+                          SnapsToDevicePixels="True" Stretch="UniformToFill" 
+                          StrokeThickness="5" UseLayoutRounding="True" 
+                          VerticalAlignment="Center"/>
+                    </Viewbox>
+                </Viewbox>
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="true">
@@ -120,10 +150,13 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
                     </Grid.RowDefinitions>
-                    <Rectangle Grid.Row="0" Fill="Yellow"/>
-                    <Rectangle Grid.Row="1" Fill="Green"/>
-                    <Rectangle Grid.Row="2" Fill="Red"/>
-                    <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Height="50" Margin="0,0,0,10" Placement="Top" Grid.Row="1" Visibility="Collapsed"/>
+                    
+                    <TickBar x:Name="TopTick" 
+                             Fill="{TemplateBinding Foreground}" 
+                             Height="50" Margin="0,0,0,10" 
+                             Placement="Top" Grid.Row="1" 
+                             Visibility="Collapsed"/>
+                    
                     <Border x:Name="TrackBackground" Background="{StaticResource SliderThumb.Track.Background}" BorderBrush="{StaticResource SliderThumb.Track.Border}" BorderThickness="1" Height="4.0" Margin="5,0" Grid.Row="1" VerticalAlignment="center">
                         <Canvas Margin="-6,-1">
                             <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden"/>
