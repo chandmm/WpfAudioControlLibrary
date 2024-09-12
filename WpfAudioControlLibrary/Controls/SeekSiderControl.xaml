@@ -100,33 +100,47 @@
             <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
-                    
-                    <TickBar x:Name="TopTick" 
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                        </Grid.RowDefinitions>
+
+                        <TickBar x:Name="TopTick" 
                              Fill="{TemplateBinding Foreground}" 
                              Height="50" Margin="0,0,0,10" 
                              Placement="Top" Grid.Row="1" 
                              Visibility="Collapsed"/>
-                    
-                    <Border x:Name="TrackBackground" Background="{StaticResource SliderThumb.Track.Background}" BorderBrush="{StaticResource SliderThumb.Track.Border}" BorderThickness="1" Height="4.0" Margin="5,0" Grid.Row="1" VerticalAlignment="center">
-                        <Canvas Margin="-6,-1">
-                            <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden"/>
-                        </Canvas>
-                    </Border>
-                    <Track x:Name="PART_Track" Grid.Row="1">
-                        <Track.DecreaseRepeatButton>
-                            <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource RepeatButtonTransparent}"/>
-                        </Track.DecreaseRepeatButton>
-                        <Track.IncreaseRepeatButton>
-                            <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource RepeatButtonTransparent}"/>
-                        </Track.IncreaseRepeatButton>
-                        <Track.Thumb>
-                            <Thumb x:Name="Thumb" Focusable="False" Height="100" OverridesDefaultStyle="True" Template="{StaticResource SliderThumbHorizontalDefault}" VerticalAlignment="Center" Width="11"/>
-                        </Track.Thumb>
-                    </Track>
+
+                        <Border x:Name="TrackBackground" Background="{StaticResource SliderThumb.Track.Background}" BorderBrush="{StaticResource SliderThumb.Track.Border}" BorderThickness="1" Height="4.0" Margin="5,0" Grid.Row="1" VerticalAlignment="center">
+                            <Canvas Margin="-6,-1">
+                                <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden"/>
+                            </Canvas>
+                        </Border>
+                        <Track x:Name="PART_Track" Grid.Row="1">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource RepeatButtonTransparent}"/>
+                            </Track.DecreaseRepeatButton>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource RepeatButtonTransparent}"/>
+                            </Track.IncreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb x:Name="Thumb" Focusable="False" Height="100" OverridesDefaultStyle="True" Template="{StaticResource SliderThumbHorizontalDefault}" VerticalAlignment="Center" Width="11"/>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding ElapsedText}"/>
+                        <TextBlock Text="{Binding DurationText}" Grid.Column="1" HorizontalAlignment="Right"/>
+                    </Grid>
                 </Grid>
             </Border>
             <ControlTemplate.Triggers>
@@ -157,6 +171,6 @@
     </UserControl.Resources>
     
     <Grid>
-        <Slider Style="{DynamicResource SliderStyle1}" TickFrequency="2" TickPlacement="TopLeft" Minimum="0" Maximum="100" Value="30"/>
+        <Slider Style="{DynamicResource SliderStyle1}" TickFrequency="{Binding TickFrequency}" TickPlacement="TopLeft" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Value="{Binding Value}"/>
     </Grid>
 </UserControl>
