@@ -21,9 +21,9 @@
             </Setter>
         </Style>
 
-        <SolidColorBrush x:Key="SliderThumb.Static.Background" Color="#350a01"/>
-        <SolidColorBrush x:Key="SliderThumb.Static.Background2" Color="OrangeRed"/>
-        <SolidColorBrush x:Key="SliderThumb.Static.Background3" Color="White"/>
+        <SolidColorBrush x:Key="SliderThumb.Static.GripBarBackground" Color="#250a01"/>
+        <SolidColorBrush x:Key="SliderThumb.Static.GlowOverlay" Color="OrangeRed"/>
+        <SolidColorBrush x:Key="SliderThumb.Static.PointBackground" Color="White"/>
         <SolidColorBrush x:Key="SliderThumb.Static.Border" Color="#FFACACAC"/>
         <SolidColorBrush x:Key="SliderThumb.Static.Foreground" Color="CornflowerBlue"/>
         <SolidColorBrush x:Key="SliderThumb.MouseOver.Background" Color="#FFDCECFC"/>
@@ -35,52 +35,6 @@
         <SolidColorBrush x:Key="SliderThumb.Track.Background" Color="Cyan"/>
         <SolidColorBrush x:Key="SliderThumb.Track.Border" Color="Blue"/>
         <ControlTemplate x:Key="SliderThumbHorizontalDefault" TargetType="{x:Type Thumb}">
-            <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="40"/>
-                </Grid.RowDefinitions>
-                <Viewbox Grid.Row="0" Stretch="Fill">
-                    <Path x:Name="grip" Data="m 103.45451,131.49792 h 3.13316 v 30.70489 h -3.13316 z" 
-                      Fill="{StaticResource SliderThumb.Static.Background}" 
-                      Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
-                      SnapsToDevicePixels="True" 
-                      Stretch="Fill" StrokeThickness="1" 
-                      UseLayoutRounding="True" 
-                      VerticalAlignment="Center"/>
-                </Viewbox>
-                <Viewbox Grid.Row="1" Stretch="Fill">
-                    <Path x:Name="gripEnd" Data="m 103.45208,162.202 1.57061,3.25596 1.5627,-3.25991 z" 
-                          Fill="{StaticResource SliderThumb.Static.Background2}" 
-                          Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
-                          SnapsToDevicePixels="True" Stretch="UniformToFill" 
-                          StrokeThickness="5" UseLayoutRounding="True" 
-                          VerticalAlignment="Center"/>
-                </Viewbox>
-                <Viewbox Grid.Row="1" Stretch="Fill">
-                    <Path Data="m 103.45208,162.202 1.57061,3.25596 1.5627,-3.25991 z" 
-                      Fill="{StaticResource SliderThumb.Static.Background3}" 
-                      Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
-                      SnapsToDevicePixels="True" Stretch="UniformToFill" 
-                      StrokeThickness="5" UseLayoutRounding="True" 
-                      VerticalAlignment="Center"/>
-                </Viewbox>
-            </Grid>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.MouseOver.Background}"/>
-                    <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.MouseOver.Border}"/>
-                </Trigger>
-                <Trigger Property="IsDragging" Value="true">
-                    <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.Pressed.Background}"/>
-                    <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.Pressed.Border}"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="false">
-                    <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.Disabled.Background}"/>
-                    <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.Disabled.Border}"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
         </ControlTemplate>
         <ControlTemplate x:Key="SliderThumbHorizontalTop" TargetType="{x:Type Thumb}">
             <Grid UseLayoutRounding="True">
@@ -89,37 +43,37 @@
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="45"/>
                 </Grid.RowDefinitions>
-                    <Viewbox Stretch="Fill">
+                    <Viewbox Stretch="Fill" Width="5">
                         <Path x:Name="grip" Data="m 103.45451,131.49792 h 3.13316 v 30.70489 h -3.13316 z" 
-                          Fill="{StaticResource SliderThumb.Static.Background}" 
+                          Fill="{StaticResource SliderThumb.Static.GripBarBackground}" 
                           Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
                           SnapsToDevicePixels="True" 
                           Stretch="UniformToFill" StrokeThickness="1" 
                           UseLayoutRounding="True"/>
                     </Viewbox>
-                <Viewbox Stretch="Fill" Opacity="0.6">
+                <Viewbox Stretch="Fill" Opacity="0.15"  Width="10">
                     <Path Data="m 103.45451,131.49792 h 3.13316 v 30.70489 h -3.13316 z" 
-                      Fill="{StaticResource SliderThumb.Static.Background2}" 
+                      Fill="{StaticResource SliderThumb.Static.GlowOverlay}" 
                       Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
                       SnapsToDevicePixels="True" 
                       Stretch="UniformToFill" StrokeThickness="1" 
                       UseLayoutRounding="True"/>
                 </Viewbox>
-                <Viewbox Stretch="Fill" Grid.Row="1">
+                <Viewbox Stretch="Fill" Grid.Row="1"  Width="5">
                         <Path x:Name="gripEnd" Data="m 103.47186,162.202 1.52314,3.252 1.57457,-3.252 z" 
-                            Fill="{StaticResource SliderThumb.Static.Background2}" 
+                            Fill="{StaticResource SliderThumb.Static.PointBackground}" 
                             Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
                             SnapsToDevicePixels="True" Stretch="UniformToFill" 
                               Margin="1,0,0,0"
                             StrokeThickness="1" UseLayoutRounding="True" Width="60"/>
                     </Viewbox>
                     <Viewbox Grid.Row="1">
-                    <Viewbox Grid.Row="1" Stretch="Fill" Opacity="0.8">
+                    <Viewbox Grid.Row="1" Stretch="Fill" Opacity="0.7">
                         <Viewbox.Effect>
                             <BlurEffect/>
                         </Viewbox.Effect>
                         <Path Data="m 103.45208,162.202 1.57061,3.25596 1.5627,-3.25991 z" 
-                          Fill="{StaticResource SliderThumb.Static.Background3}" 
+                          Fill="{StaticResource SliderThumb.Static.GlowOverlay}" 
                           Stroke="{Binding Path=Fill, RelativeSource={RelativeSource Mode=Self}}" 
                           SnapsToDevicePixels="True" Stretch="UniformToFill" 
                           StrokeThickness="5" UseLayoutRounding="True" 
