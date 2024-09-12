@@ -25,7 +25,7 @@
         <SolidColorBrush x:Key="SliderThumb.Static.GlowOverlay" Color="OrangeRed"/>
         <SolidColorBrush x:Key="SliderThumb.Static.PointBackground" Color="White"/>
         <SolidColorBrush x:Key="SliderThumb.Static.Border" Color="#FFACACAC"/>
-        <SolidColorBrush x:Key="SliderThumb.Static.Foreground" Color="CornflowerBlue"/>
+        <SolidColorBrush x:Key="SliderThumb.Static.Foreground" Color="DodgerBlue"/>
         <SolidColorBrush x:Key="SliderThumb.MouseOver.Background" Color="#FFDCECFC"/>
         <SolidColorBrush x:Key="SliderThumb.MouseOver.Border" Color="#FF7Eb4EA"/>
         <SolidColorBrush x:Key="SliderThumb.Pressed.Background" Color="#FFDAECFC"/>
