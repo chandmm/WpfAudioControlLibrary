@@ -4,10 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfAudioControlLibrary.Controls"
+             xmlns:behaviours="clr-namespace:WpfAudioControlLibrary.Controls.Behaviours"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
-    <Grid >
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid behaviours:ActualSizeBehaviour.MonitorActualSize="True">
         <Viewbox Stretch="Uniform">
+            <!--Scale arcs-->
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#62e3f6" Width="400" Height="400">
                 <Path Stroke="Black" StrokeThickness="5">
                     <Path.Data>
@@ -25,7 +35,29 @@
                     <Path.Data>
                         <PathGeometry>
                             <PathFigure StartPoint="275, 182">
-                                <PolyBezierSegment Points="300,188,320,195,346,210"/>
+                                <PolyBezierSegment Points="300,188,320,195,350,212"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+                
+                <!--Scale markings-->
+                <Line X1="63" Y1="220" X2="32" Y2="180" Stroke="Black" StrokeThickness="5"/>
+                <Line X1="200" Y1="183" X2="200" Y2="140" Stroke="Black" StrokeThickness="5"/>
+                <Line X1="270" Y1="193" X2="283" Y2="148" Stroke="Black" StrokeThickness="5"/>
+                <Line X1="340" Y1="223" X2="372" Y2="180" Stroke="Black" StrokeThickness="5"/>
+                <Label Content="{Binding Mark1}" Margin="5,140,0,0"/>
+                <Label Content="{Binding Mark2}" Margin="180,100,0,0"/>
+                <Label Content="{Binding Mark3}" Margin="265,108,0,0"/>
+                <Label Content="{Binding Mark4}" Margin="350,140,0,0"/>
+                <Line x:Name="needle" X1="200" Y1="400" X2="150" Y2="130" Stroke="Black" StrokeThickness="5"/>
+                <!-- FSD pixels: 30 to 375 centre= -->
+
+                <Path Fill="Black" Stroke="Black" StrokeThickness="2">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure StartPoint="120, 400">
+                                <ArcSegment Point="280, 400" Size="20,20" SweepDirection="Clockwise" IsLargeArc="True" />
                             </PathFigure>
                         </PathGeometry>
                     </Path.Data>
