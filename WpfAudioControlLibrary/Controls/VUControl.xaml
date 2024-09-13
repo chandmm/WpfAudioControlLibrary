@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="WpfAudioControlLibrary.Controls.VUControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfAudioControlLibrary.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+    <Grid >
+        <Viewbox Stretch="Uniform">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#62e3f6" Width="400" Height="400">
+                <Path Stroke="Black" StrokeThickness="5">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure StartPoint="50, 200">
+                                <PolyBezierSegment Points="130,150,260,150,350,200"/>
+                            </PathFigure>
+                            <PathFigure StartPoint="60, 220">
+                                <PolyBezierSegment Points="130,170,260,170,340,220"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+                <Path Stroke="Black" StrokeThickness="25">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure StartPoint="275, 182">
+                                <PolyBezierSegment Points="300,188,320,195,346,210"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+            </Grid>
+        </Viewbox>            
+    </Grid>
+</UserControl>
