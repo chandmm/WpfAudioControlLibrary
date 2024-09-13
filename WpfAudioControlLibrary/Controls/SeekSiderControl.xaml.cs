@@ -5,6 +5,8 @@ namespace WpfAudioControlLibrary.Controls
 {
     public partial class SeekSiderControl : UserControl
     {
+        #region Dependency Properties
+
         public static readonly DependencyProperty TickFrequencyProperty =
             DependencyProperty.Register("TickFrequency", typeof(double), typeof(SeekSiderControl),
                 new PropertyMetadata(0d, null));
@@ -41,23 +43,63 @@ namespace WpfAudioControlLibrary.Controls
             set { SetValue(ValueProperty, value); }
         }
 
-        public static readonly DependencyProperty ElapsedTextProperty =
-            DependencyProperty.Register("ElapsedText", typeof(string), typeof(SeekSiderControl),
-                new PropertyMetadata("Elapsed 0:0", null));
-        public string ElapsedText
+        public static readonly DependencyProperty ElapsedHoursProperty =
+            DependencyProperty.Register("ElapsedHours", typeof(int), typeof(SeekSiderControl),
+                new PropertyMetadata(0, null));
+        public int ElapsedHours
         {
-            get { return (string)GetValue(ElapsedTextProperty); }
-            set { SetValue(ElapsedTextProperty, value); }
+            get { return (int)GetValue(ElapsedHoursProperty); }
+            set { SetValue(ElapsedHoursProperty, value); }
         }
 
-        public static readonly DependencyProperty DurationTextProperty =
-            DependencyProperty.Register("DurationText", typeof(string), typeof(SeekSiderControl),
-                new PropertyMetadata("Duration 0:0", null));
-        public string DurationText
+        public static readonly DependencyProperty ElapsedMinutesProperty =
+            DependencyProperty.Register("ElapsedMinutes", typeof(int), typeof(SeekSiderControl),
+                new PropertyMetadata(0, null));
+        public int ElapsedMinutes
         {
-            get { return (string)GetValue(DurationTextProperty); }
-            set { SetValue(DurationTextProperty, value); }
+            get { return (int)GetValue(ElapsedMinutesProperty); }
+            set { SetValue(ElapsedMinutesProperty, value); }
         }
+
+        public static readonly DependencyProperty ElapsedSecondsProperty =
+            DependencyProperty.Register("ElapsedSeconds", typeof(int), typeof(SeekSiderControl),
+                new PropertyMetadata(0, null));
+        public int ElapsedSeconds
+        {
+            get { return (int)GetValue(ElapsedSecondsProperty); }
+            set { SetValue(ElapsedSecondsProperty, value); }
+        }
+
+        public static readonly DependencyProperty DurationMinutesProperty =
+            DependencyProperty.Register("DurationMinutes", typeof(int), typeof(SeekSiderControl),
+                new PropertyMetadata(0, null));
+        public int DurationMinutes
+        {
+            get { return (int)GetValue(DurationMinutesProperty); }
+            set { SetValue(DurationMinutesProperty, value); }
+        }
+
+        public static readonly DependencyProperty DurationSecondsProperty =
+            DependencyProperty.Register("DurationSeconds", typeof(int), typeof(SeekSiderControl),
+                new PropertyMetadata(0, null));
+        public int DurationSeconds
+        {
+            get { return (int)GetValue(DurationSecondsProperty); }
+            set { SetValue(DurationSecondsProperty, value); }
+        }
+
+        public static readonly DependencyProperty DurationHoursProperty =
+           DependencyProperty.Register("DurationHours", typeof(int), typeof(SeekSiderControl),
+               new PropertyMetadata(0, null));
+        public int DurationHours
+        {
+            get { return (int)GetValue(DurationHoursProperty); }
+            set { SetValue(DurationHoursProperty, value); }
+        }
+
+        #endregion
+
+        #region Initialisation
 
         public SeekSiderControl()
         {
@@ -65,5 +107,7 @@ namespace WpfAudioControlLibrary.Controls
 
             InitializeComponent();
         }
+
+        #endregion
     }
 }
