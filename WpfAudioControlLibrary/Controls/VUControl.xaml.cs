@@ -11,7 +11,10 @@ namespace WpfAudioControlLibrary.Controls
 
         #region Fields
 
-        
+        private static double FsdRange;
+        private static int WindowSizeBounds = 400;
+        private static int NeedleLength = 280;
+        private static double HalfTheta = 50d;
 
         #endregion
 
@@ -39,7 +42,12 @@ namespace WpfAudioControlLibrary.Controls
         public double Value
         {
             get => (double)GetValue(ValueProperty);
-            set => SetValue(ValueProperty, value);
+            set
+            {
+                SetValue(ValueProperty, value);
+
+                UpdateNeedlePosition();
+            }
         }
 
         public static readonly DependencyProperty DataProperty =
@@ -110,6 +118,30 @@ namespace WpfAudioControlLibrary.Controls
             }
         }
 
+        private int _x;
+        public int X
+        {
+            get => _x;
+            set
+            {
+                _x = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private int _y;
+        public int Y
+        {
+            get => _y;
+            set
+            {
+                _y = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Initialisation
@@ -119,6 +151,10 @@ namespace WpfAudioControlLibrary.Controls
             DataContext = this;
 
             InitializeComponent();
+
+            Value = Minimum;
+
+            OnPropertyChanged(nameof(Value));
         }
 
         #endregion
@@ -126,17 +162,75 @@ namespace WpfAudioControlLibrary.Controls
 
         #region Callback Methods
 
+        /*
+         x 360
+
+            11 x 40 = 440 + 70 = 510
+
+            (x,y) = (360, 510)
+
+            hypotenuse = sqrt(360 X x^2 + 510 * x^2);
+            = 624.259 (Line length).
+
+           stsrting xy = (40,330)
+         */
+
         private static void OnDataChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
         {
         }
 
         private static void OnValueChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
         {
+            if (dependencyObj is VUControl control
+                && (control.DataContext as VUControl) != null)
+            {
+                var viewModel = control.DataContext as VUControl;
+
+                viewModel.Value = (double)args.NewValue;
+            }
         }
 
         private static void OnRangeChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
         {
+            if (dependencyObj is VUControl control
+                && (control.DataContext as VUControl) != null)
+            {
+                var viewModel = control.DataContext as VUControl;
+
+                FsdRange = viewModel.Maximum - viewModel.Minimum;
+
+                // work out min value and max value theta degrees.
+                // Move only between these angles. Let the Viewbox take care of uniformity.
+            }
         }
+
+        private void UpdateNeedlePosition()
+        {
+            var radianAngle = DegreesToRadians(CalculateNeedleAngle());
+
+            var sineCos = Math.SinCos(radianAngle);
+
+            X = (int)((WindowSizeBounds / 2) + (sineCos.Cos * NeedleLength));
+            Y = (int)(WindowSizeBounds - (sineCos.Sin * NeedleLength));
+        }
+
+        private double CalculateNeedleAngle()
+        {
+            (double minAngle, double maxAngle) = GetMinMaxAngle();
+
+            // Normalize the value to a range between 0 and 1
+            double normalizedValue = (Value - Minimum) / FsdRange;
+
+            // Calculate the angle based on the normalized value
+            return minAngle + normalizedValue * (maxAngle - minAngle);
+        }
+
+
+        private (double, double) GetMinMaxAngle()
+            => (90 + (90 - HalfTheta), HalfTheta);
+
+        private double DegreesToRadians(double degrees)
+            => degrees * (Math.PI / 180);
 
         #endregion
 

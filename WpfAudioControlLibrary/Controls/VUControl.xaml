@@ -22,11 +22,11 @@
                 <Path Stroke="Black" StrokeThickness="5">
                     <Path.Data>
                         <PathGeometry>
-                            <PathFigure StartPoint="50, 200">
-                                <PolyBezierSegment Points="130,150,260,150,350,200"/>
+                            <PathFigure StartPoint="35, 205">
+                                <PolyBezierSegment Points="130,150,260,150,360,205"/>
                             </PathFigure>
-                            <PathFigure StartPoint="60, 220">
-                                <PolyBezierSegment Points="130,170,260,170,340,220"/>
+                            <PathFigure StartPoint="45, 220">
+                                <PolyBezierSegment Points="130,170,260,170,350,220"/>
                             </PathFigure>
                         </PathGeometry>
                     </Path.Data>
@@ -34,23 +34,31 @@
                 <Path Stroke="Black" StrokeThickness="25">
                     <Path.Data>
                         <PathGeometry>
-                            <PathFigure StartPoint="275, 182">
-                                <PolyBezierSegment Points="300,188,320,195,350,212"/>
+                            <PathFigure StartPoint="275, 181">
+                                <PolyBezierSegment Points="300,188,320,195,358,214"/>
                             </PathFigure>
                         </PathGeometry>
                     </Path.Data>
                 </Path>
                 
                 <!--Scale markings-->
-                <Line X1="63" Y1="220" X2="32" Y2="180" Stroke="Black" StrokeThickness="5"/>
+                <Line X1="48" Y1="220" X2="15" Y2="180" Stroke="Black" StrokeThickness="5"/>
                 <Line X1="200" Y1="183" X2="200" Y2="140" Stroke="Black" StrokeThickness="5"/>
                 <Line X1="270" Y1="193" X2="283" Y2="148" Stroke="Black" StrokeThickness="5"/>
-                <Line X1="340" Y1="223" X2="372" Y2="180" Stroke="Black" StrokeThickness="5"/>
+                <Line X1="350" Y1="223" X2="380" Y2="185" Stroke="Black" StrokeThickness="5"/>
                 <Label Content="{Binding Mark1}" Margin="5,140,0,0"/>
                 <Label Content="{Binding Mark2}" Margin="180,100,0,0"/>
                 <Label Content="{Binding Mark3}" Margin="265,108,0,0"/>
                 <Label Content="{Binding Mark4}" Margin="350,140,0,0"/>
-                <Line x:Name="needle" X1="200" Y1="400" X2="150" Y2="130" Stroke="Black" StrokeThickness="5"/>
+                
+                <Line x:Name="needle" 
+                      StrokeEndLineCap="Round" 
+                      X1="200" 
+                      Y1="400" 
+                      X2="{Binding X, FallbackValue=200}" 
+                      Y2="{Binding Y, FallbackValue=120}"
+                      Stroke="Black" 
+                      StrokeThickness="5"/>
                 <!-- FSD pixels: 30 to 375 centre= -->
 
                 <Path Fill="Black" Stroke="Black" StrokeThickness="2">
