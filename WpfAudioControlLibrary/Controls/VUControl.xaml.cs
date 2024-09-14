@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +16,12 @@ namespace WpfAudioControlLibrary.Controls
         private static int WindowSizeBounds = 400;
         private static int NeedleLength = 280;
         private static double HalfTheta = 50d;
+
+        private readonly int _internalFsd = 100;
+        private readonly int _internalMinimum = 0;
+        private readonly int _internalMaximum = 100;
+
+        private double _ratioMapToInternalRange = 1;
 
         #endregion
 
@@ -142,6 +149,8 @@ namespace WpfAudioControlLibrary.Controls
             }
         }
 
+        public int InternalFsd => _internalFsd;
+
         #endregion
 
         #region Initialisation
@@ -160,49 +169,7 @@ namespace WpfAudioControlLibrary.Controls
         #endregion
 
 
-        #region Callback Methods
-
-        /*
-         x 360
-
-            11 x 40 = 440 + 70 = 510
-
-            (x,y) = (360, 510)
-
-            hypotenuse = sqrt(360 X x^2 + 510 * x^2);
-            = 624.259 (Line length).
-
-           stsrting xy = (40,330)
-         */
-
-        private static void OnDataChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
-        {
-        }
-
-        private static void OnValueChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
-        {
-            if (dependencyObj is VUControl control
-                && (control.DataContext as VUControl) != null)
-            {
-                var viewModel = control.DataContext as VUControl;
-
-                viewModel.Value = (double)args.NewValue;
-            }
-        }
-
-        private static void OnRangeChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
-        {
-            if (dependencyObj is VUControl control
-                && (control.DataContext as VUControl) != null)
-            {
-                var viewModel = control.DataContext as VUControl;
-
-                FsdRange = viewModel.Maximum - viewModel.Minimum;
-
-                // work out min value and max value theta degrees.
-                // Move only between these angles. Let the Viewbox take care of uniformity.
-            }
-        }
+        #region Logic
 
         private void UpdateNeedlePosition()
         {
@@ -231,6 +198,43 @@ namespace WpfAudioControlLibrary.Controls
 
         private double DegreesToRadians(double degrees)
             => degrees * (Math.PI / 180);
+        public void SetRatioMapToInternalRange()
+        {
+            _ratioMapToInternalRange = _internalFsd/FsdRange;
+        }
+
+        #endregion
+
+        #region Callback Methods
+
+        private static void OnDataChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
+        {
+        }
+
+        private static void OnValueChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
+        {
+            if (dependencyObj is VUControl control)
+            {
+                // Cast the new value from the event args
+                double newValue = (double)args.NewValue;
+
+                // Now update the needle position directly in your control
+                control.UpdateNeedlePosition();
+            }
+        }
+
+        private static void OnRangeChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
+        {
+            if (dependencyObj is VUControl control
+                && (control.DataContext as VUControl) != null)
+            {
+                var viewModel = control.DataContext as VUControl;
+
+                FsdRange = (viewModel.Maximum - viewModel.Minimum);
+
+                viewModel.SetRatioMapToInternalRange();
+            }
+        }
 
         #endregion
 
