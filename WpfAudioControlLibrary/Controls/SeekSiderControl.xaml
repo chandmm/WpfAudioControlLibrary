@@ -133,13 +133,29 @@
                             </Track.Thumb>
                         </Track>
                     </Grid>
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1"  Margin="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding ElapsedText}"/>
-                        <TextBlock Text="{Binding DurationText}" Grid.Column="1" HorizontalAlignment="Right"/>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="Elapsed {0:D2}:{1:D2}:{2:D2}">
+                                    <Binding Path="ElapsedHours"/>
+                                    <Binding Path="ElapsedMinutes"/>
+                                    <Binding Path="ElapsedSeconds"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Right">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="Duration {0:D2}:{1:D2}:{2:D2}">
+                                    <Binding Path="DurationHours"/>
+                                    <Binding Path="DurationMinutes"/>
+                                    <Binding Path="DurationSeconds"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
                     </Grid>
                 </Grid>
             </Border>
