@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="WpfAudioControlLibrary.Controls.PowerButtonControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfAudioControlLibrary.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+    <Grid>
+        <Button Command="{Binding ExitCommand}" Background="Transparent" BorderThickness="0">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="OverridesDefaultStyle" Value="True"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Grid Background="Transparent">
+                                    <Viewbox Stretch="Uniform">
+                                        <Grid>
+                                            <Path x:Name="FirstPath"
+                                                  Data="M 17.643742,4.1372098 C 23.39472,4.8139049 28.075374,10.169395 27.97606,15.959197 28.360591,24.31062 18.607294,30.666412 11.12098,26.937222 3.6597453,23.960661 1.5782937,13.138724 7.4400345,7.6241618 9.2289982,5.7872368 11.624122,4.5545342 14.15867,4.1662693"
+                                                  Stroke="Black" 
+                                                  StrokeThickness="2"/>
+                                            <Path Data="m 15.823502,7.5732218 c 0.01759,-2.3403743 0.03518,-4.6807485 0.05277,-7.0211228"
+                                                  Stroke="Red"
+                                                  StrokeThickness="2"/>
+                                        </Grid>
+                                    </Viewbox>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="FirstPath" Property="Stroke" Value="LimeGreen"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</UserControl>
