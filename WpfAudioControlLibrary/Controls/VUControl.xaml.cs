@@ -203,12 +203,27 @@ namespace WpfAudioControlLibrary.Controls
             _ratioMapToInternalRange = _internalFsd/FsdRange;
         }
 
+        private void UpdateNeedlePositionUsingPcmData()
+        {
+            if (Data != null
+                && Data.Any())
+            {
+                // TODO: Add Db calculation logic from PCM samples.
+                // Data is an array of bytes of PCM samples.
+            }
+        }
+
         #endregion
 
         #region Callback Methods
 
         private static void OnDataChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
         {
+            if (dependencyObj is VUControl control)
+            {
+                // Now update the needle position directly in your control
+                control.UpdateNeedlePositionUsingPcmData();
+            }
         }
 
         private static void OnValueChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
