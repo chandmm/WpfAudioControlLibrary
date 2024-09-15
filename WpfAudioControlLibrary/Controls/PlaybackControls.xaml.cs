@@ -42,13 +42,13 @@ namespace WpfAudioControlLibrary.Controls
             set { SetValue(PauseCommandProperty, value); }
         }
 
-        public static readonly DependencyProperty EjectCommandProperty =
-            DependencyProperty.Register("EjectCommand", typeof(ICommand), typeof(PlaybackControls),
+        public static readonly DependencyProperty SelectCommandProperty =
+            DependencyProperty.Register("SelectCommand", typeof(ICommand), typeof(PlaybackControls),
                 new PropertyMetadata(null, null));
-        public ICommand EjectCommand
+        public ICommand SelectCommand
         {
-            get { return (ICommand)GetValue(EjectCommandProperty); }
-            set { SetValue(EjectCommandProperty, value); }
+            get { return (ICommand)GetValue(SelectCommandProperty); }
+            set { SetValue(SelectCommandProperty, value); }
         }
 
         public static readonly DependencyProperty IsAutoPlayCheckedProperty =
