@@ -27,13 +27,13 @@ namespace WpfAudioControlLibrary.Controls
         public event PropertyChangedEventHandler? PropertyChanged;
 
         // Default for Value is 0 to represent null/default startup state.
-        public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(int), typeof(VolumeControlView),
+        public static readonly DependencyProperty VolumeProperty =
+            DependencyProperty.Register("Volume", typeof(int), typeof(VolumeControlView),
                 new PropertyMetadata(0, OnValueChanged)); 
-        public int Value
+        public int Volume
         {
-            get { return (int)GetValue(ValueProperty); }
-            set { SetValue(ValueProperty, value); }
+            get { return (int)GetValue(VolumeProperty); }
+            set { SetValue(VolumeProperty, value); }
         }
 
         public static readonly DependencyProperty ControlLabelProperty =
@@ -110,7 +110,7 @@ namespace WpfAudioControlLibrary.Controls
         private void UpdateLinePosition()
         {
             double radiusLine = 45;
-            var value = Value < Min ? Min : Value;
+            var value = Volume < Min ? Min : Volume;
 
             var splice = value * (270d/Max);
             var angle = ((270 - splice) - 45);
