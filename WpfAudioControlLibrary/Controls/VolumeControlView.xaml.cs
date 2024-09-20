@@ -1,4 +1,21 @@
-﻿using System.ComponentModel;
+﻿/*
+   WPF Audio Control Library: Set if controls applicable to audio applications
+    Copyright (C) 2024  Michael Chand
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,13 +27,13 @@ namespace WpfAudioControlLibrary.Controls
         public event PropertyChangedEventHandler? PropertyChanged;
 
         // Default for Value is 0 to represent null/default startup state.
-        public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(int), typeof(VolumeControlView),
+        public static readonly DependencyProperty VolumeProperty =
+            DependencyProperty.Register("Volume", typeof(int), typeof(VolumeControlView),
                 new PropertyMetadata(0, OnValueChanged)); 
-        public int Value
+        public int Volume
         {
-            get { return (int)GetValue(ValueProperty); }
-            set { SetValue(ValueProperty, value); }
+            get { return (int)GetValue(VolumeProperty); }
+            set { SetValue(VolumeProperty, value); }
         }
 
         public static readonly DependencyProperty ControlLabelProperty =
@@ -93,7 +110,7 @@ namespace WpfAudioControlLibrary.Controls
         private void UpdateLinePosition()
         {
             double radiusLine = 45;
-            var value = Value < Min ? Min : Value;
+            var value = Volume < Min ? Min : Volume;
 
             var splice = value * (270d/Max);
             var angle = ((270 - splice) - 45);

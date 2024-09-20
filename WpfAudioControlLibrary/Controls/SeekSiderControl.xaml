@@ -187,6 +187,12 @@
     </UserControl.Resources>
     
     <Grid>
-        <Slider Style="{DynamicResource SliderStyle1}" TickFrequency="{Binding TickFrequency}" TickPlacement="TopLeft" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Value="{Binding Value}"/>
+        <Slider 
+            Style="{DynamicResource SliderStyle1}" 
+            TickFrequency="{Binding TickFrequency}" 
+            TickPlacement="TopLeft" Minimum="{Binding Minimum}" 
+            Maximum="{Binding Maximum}" 
+            Value="{Binding Value, Mode=TwoWay}"
+            Cursor="ScrollWE"/>
     </Grid>
 </UserControl>
