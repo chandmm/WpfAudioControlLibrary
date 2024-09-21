@@ -17,23 +17,23 @@
 */
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace WpfAudioControlLibrary.Controls
 {
-    public partial class PowerButtonControl : UserControl
+    public partial class PlayIndicatorControl : UserControl
     {
-        public static readonly DependencyProperty ExitCommandProperty =
-            DependencyProperty.Register("ExitCommand", typeof(ICommand), typeof(PowerButtonControl),
-                new PropertyMetadata(null, null));
-        public ICommand ExitCommand
+        public static readonly DependencyProperty IsOnProperty =
+            DependencyProperty.Register("IsOn", typeof(bool), typeof(PlayIndicatorControl),
+                new PropertyMetadata(false, null));
+        public bool IsOn
         {
-            get { return (ICommand)GetValue(ExitCommandProperty); }
-            set { SetValue(ExitCommandProperty, value); }
+            get { return (bool)GetValue(IsOnProperty); }
+            set { SetValue(IsOnProperty, value); }
         }
 
-        public PowerButtonControl()
+        public PlayIndicatorControl()
         {
+            DataContext = this;
             InitializeComponent();
         }
     }
