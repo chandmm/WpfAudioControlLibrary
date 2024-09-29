@@ -58,7 +58,7 @@
                       X2="{Binding X, FallbackValue=200}" 
                       Y2="{Binding Y, FallbackValue=120}"
                       Stroke="Black" 
-                      StrokeThickness="5"/>
+                      StrokeThickness="8"/>
                 <!-- FSD pixels: 30 to 375 centre= -->
 
                 <Path Fill="Black" Stroke="Black" StrokeThickness="2">
