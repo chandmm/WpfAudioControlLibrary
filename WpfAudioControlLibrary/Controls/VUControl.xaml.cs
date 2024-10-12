@@ -15,40 +15,29 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using WpfAudioControlLibrary.Controls.ViewModels;
 
 namespace WpfAudioControlLibrary.Controls
 {
-    public partial class VUControl : UserControl, INotifyPropertyChanged
+    public partial class VUControl : UserControl
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        #region Fields
-
-        private VUControlViewModel _viewModel;
-
-        #endregion
-
         #region Dependency Properties
 
         public static readonly DependencyProperty MinimumProperty =
-           DependencyProperty.Register("Minimum", typeof(double), typeof(VUControl), new PropertyMetadata(0.0, OnRangeChangedMinimum));
-
-        public double Minimum
+           DependencyProperty.Register("Minimum", typeof(double?), typeof(VUControl), new PropertyMetadata(null, OnRangeChangedMinimum));
+        public double? Minimum
         {
-            get => (double)GetValue(MinimumProperty);
+            get => (double?)GetValue(MinimumProperty);
             set => SetValue(MinimumProperty, value);
         }
 
         public static readonly DependencyProperty MaximumProperty =
-            DependencyProperty.Register("Maximum", typeof(double), typeof(VUControl), new PropertyMetadata(100.0, OnRangeChangedMaximum));
-        public double Maximum
+            DependencyProperty.Register("Maximum", typeof(double?), typeof(VUControl), new PropertyMetadata(null, OnRangeChangedMaximum));
+        public double? Maximum
         {
-            get => (double)GetValue(MaximumProperty);
+            get => (double?)GetValue(MaximumProperty);
             set => SetValue(MaximumProperty, value);
         }
 
@@ -61,14 +50,6 @@ namespace WpfAudioControlLibrary.Controls
             {
                 SetValue(ValueProperty, value);
             }
-        }
-
-        public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("Data", typeof(byte[]), typeof(VUControl), new PropertyMetadata(default(byte[]), OnDataChanged));
-        public byte[] Data
-        {
-            get => (byte[])GetValue(DataProperty);
-            set => SetValue(DataProperty, value);
         }
 
         public static readonly DependencyProperty Mark1Property =
@@ -152,23 +133,13 @@ namespace WpfAudioControlLibrary.Controls
 
         public VUControl()
         {
-            DataContext = new VUControlViewModel();
-
             InitializeComponent();
+            DataContext = new VUControlViewModel(0, 100);
         }
 
         #endregion
 
         #region Callback Methods
-
-        private static void OnDataChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
-        {
-            if (dependencyObj is VUControl control
-                && control.DataContext is VUControlViewModel viewModel)
-            {
-                viewModel.UpdateNeedlePositionUsingPcmData();
-            }
-        }
 
         private static void OnValueChanged(DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args)
         {
@@ -204,13 +175,6 @@ namespace WpfAudioControlLibrary.Controls
                 viewModel.SetRatioMapToInternalRange();
             }
         }
-
-        #endregion
-
-        #region Event Handlers
-
-        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         #endregion
     }

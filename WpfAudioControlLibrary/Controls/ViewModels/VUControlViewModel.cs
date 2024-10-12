@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace WpfAudioControlLibrary.Controls.ViewModels
 {
@@ -7,10 +9,9 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
     {
         #region Fields
 
-        public double FsdRange { get; set; }
         private static int WindowSizeBounds = 400;
         private static int NeedleLength = 280;
-        private static double HalfTheta = 50d;
+        private static double HalfWayPointTheta = 50d;
 
         private readonly int _internalFsd = 100;
         private readonly int _internalMinimum = 0;
@@ -19,6 +20,7 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
         private double _ratioMapToInternalRange = 1;
 
         public event PropertyChangedEventHandler? PropertyChanged;
+        public double FsdRange { get; set; }
 
         #endregion
 
@@ -170,27 +172,15 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
             }
         }
 
-        private byte[] _data;
-        public byte[] Data
-        {
-            get => _data;
-            set 
-            { 
-                _data = value;
-
-                OnPropertyChanged();
-            }
-        }
-
         public int InternalFsd => _internalFsd;
 
         #endregion
 
-        public VUControlViewModel()
+        public VUControlViewModel(double defaultMmin, double defaultMax)
         {
-            Minimum = 0;
-            Maximum = 100;
-            Value = Minimum;
+            FsdRange = defaultMmin - defaultMax;
+            SetRatioMapToInternalRange();
+            Value = defaultMmin;
         }
 
         #region Logic
@@ -218,7 +208,7 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
 
 
         private (double, double) GetMinMaxAngle()
-            => (90 + (90 - HalfTheta), HalfTheta);
+            => (90 + (90 - HalfWayPointTheta), HalfWayPointTheta);
 
         private double DegreesToRadians(double degrees)
             => degrees * (Math.PI / 180);
@@ -226,16 +216,6 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
         public void SetRatioMapToInternalRange()
         {
             _ratioMapToInternalRange = _internalFsd / FsdRange;
-        }
-
-        public void UpdateNeedlePositionUsingPcmData()
-        {
-            if (Data != null
-                && Data.Any())
-            {
-                // TODO: Add Db calculation logic from PCM samples.
-                // Data is an array of bytes of PCM samples.
-            }
         }
 
         #endregion
