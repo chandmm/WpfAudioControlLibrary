@@ -16,6 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 using System.Windows;
+using WpfAudioControlLibrary.Controls.ViewModels;
 
 namespace WpfAudioControlLibrary.Controls.Behaviours
 {
@@ -44,8 +45,9 @@ namespace WpfAudioControlLibrary.Controls.Behaviours
             {
                 element.SizeChanged += (s, ev) =>
                 {
-                    var viewModel = element.DataContext as VUControl;
-                    if (viewModel != null)
+                    var view = element.DataContext as VUControl;
+                    if (view != null
+                        && view.DataContext is VUControlViewModel viewModel)
                     {
                         viewModel.GridHeight = element.ActualHeight;
                         viewModel.GridWidth = element.ActualWidth;
