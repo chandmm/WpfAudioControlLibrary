@@ -17,7 +17,6 @@
     </UserControl.Resources>
     <Grid behaviours:ActualSizeBehaviour.MonitorActualSize="True">
         <Viewbox Stretch="Uniform">
-            <!--Scale arcs-->
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#62e3f6" Width="400" Height="400">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -33,6 +32,7 @@
                         Width="200" 
                         VerticalAlignment="Center"
                         Margin="0,100,0,0"/>
+                    <!--Scale arcs-->
                     <Path Stroke="Black" StrokeThickness="5">
                         <Path.Data>
                             <PathGeometry>
@@ -64,6 +64,17 @@
                     <Label Content="{Binding Mark2}" Margin="180,100,0,0"/>
                     <Label Content="{Binding Mark3}" Margin="265,108,0,0"/>
                     <Label Content="{Binding Mark4}" Margin="350,140,0,0"/>
+
+                    <Ellipse
+                        Stroke="Black" 
+                        StrokeThickness="1"
+                        Fill="Black"
+                        Width="15" 
+                        Height="15" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Margin="40, 225, 0, 0" >
+                    </Ellipse>
 
                     <Line x:Name="needle" 
                       StrokeEndLineCap="Round" 
