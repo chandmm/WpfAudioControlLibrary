@@ -15,57 +15,77 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Command="{Binding SkipToStartCommand}">
                 <Button.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <Rectangle Width="5" Height="25" Fill="Black" Margin="2"/>
-                        <Polygon Points="20, 2, 20, 27, 0, 14.5" Fill="Black"/>
-                    </StackPanel>
+                    <Viewbox Stretch="Uniform">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="5" Height="25" Fill="Black" Margin="2"/>
+                            <Polygon Points="20, 2, 20, 27, 0, 14.5" Fill="Black"/>
+                        </StackPanel>
+                    </Viewbox>
                 </Button.Content>
             </Button>
             <Button Grid.Column="1" Command="{Binding StopCommand}">
                 <Button.Content>
-                    <Grid>
-                        <Rectangle Width="25" Height="25" Fill="Red"/>
-                    </Grid>
+                    <Viewbox Stretch="Uniform" Margin="5">
+                        <Grid>
+                            <Rectangle Width="25" Height="25" Fill="Black"/>
+                        </Grid>
+                    </Viewbox>
                 </Button.Content>
             </Button>
             <Button Grid.Column="2" Command="{Binding PlayCommand}">
                 <Button.Content>
-                    <Grid Background="Transparent">
-                        <Polygon Points="0,0 0,26 25,13">
-                            <Polygon.Resources>
-                                <Style TargetType="Polygon">
-                                    <Setter Property="Fill" Value="Green"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsPlaying}" Value="True">
-                                            <Setter Property="Fill" Value="Lime"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Polygon.Resources>
-                        </Polygon>
-                    </Grid>
+                    <Viewbox Stretch="Uniform">
+                        <Grid Background="Transparent" Margin="2">
+                            <Polygon Points="0,0 0,26 25,13" Fill="Black"/>
+                        </Grid>
+                    </Viewbox>
                 </Button.Content>
             </Button>
             <Button Grid.Column="3" Command="{Binding PauseCommand}">
                 <Button.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <Rectangle Width="5" Height="25" Fill="Black" Margin="2"/>
-                        <Rectangle Width="5" Height="25" Fill="Black" Margin="2"/>
-                    </StackPanel>
+                    <Viewbox Stretch="Uniform">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="5" Height="25" Fill="Black" Margin="2"/>
+                            <Rectangle Width="5" Height="25" Fill="Black" Margin="2"/>
+                        </StackPanel>
+                    </Viewbox>
                 </Button.Content>
             </Button>
-            <Button Grid.Column="4" Command="{Binding SelectCommand}">
+            <Button Grid.Column="4" Command="{Binding SkipToEndCommand}">
                 <Button.Content>
-                    <StackPanel>
-                        <Polygon Points="0, 15, 20, 15, 10,2" Fill="Black"/>
-                        <Rectangle Width="20" Height="5" Fill="Black" Margin="0,2,0,0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Viewbox Stretch="Uniform" RenderTransformOrigin="0.5,0.5">
+                            <Viewbox.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="180"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Viewbox.RenderTransform>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="5" Height="25" Fill="Black" Margin="2"/>
+                                <Polygon Points="20, 2, 20, 27, 0, 14.5" Fill="Black"/>
+                            </StackPanel>
+                        </Viewbox>
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <Grid Grid.Column="5" VerticalAlignment="Stretch">
+            <Button Grid.Column="5" Command="{Binding SelectCommand}">
+                <Button.Content>
+                    <Viewbox Stretch="Uniform">
+                        <StackPanel>
+                            <Polygon Points="0, 13, 20, 13, 10, 2" Fill="Black"/>
+                            <Rectangle Width="20" Height="5" Fill="Black" Margin="0,2,0,2"/>
+                        </StackPanel>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+            <Grid Grid.Column="6" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
