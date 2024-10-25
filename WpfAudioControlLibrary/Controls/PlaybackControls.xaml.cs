@@ -23,6 +23,8 @@ namespace WpfAudioControlLibrary.Controls
 {
     public partial class PlaybackControls : UserControl
     {
+        #region Dependencies
+
         public static readonly DependencyProperty SkipToStartCommandProperty =
             DependencyProperty.Register("SkipToStartCommand", typeof(ICommand), typeof(PlaybackControls),
                 new PropertyMetadata(null, null));
@@ -68,6 +70,33 @@ namespace WpfAudioControlLibrary.Controls
             set { SetValue(SelectCommandProperty, value); }
         }
 
+        public static readonly DependencyProperty SkipToEndCommandProperty =
+            DependencyProperty.Register("SkipToEndCommand", typeof(ICommand), typeof(PlaybackControls),
+                new PropertyMetadata(null, null));
+        public ICommand SkipToEndCommand
+        {
+            get { return (ICommand)GetValue(SkipToEndCommandProperty); }
+            set { SetValue(SkipToEndCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty SetAutoplayModeToggleCommandProperty =
+            DependencyProperty.Register("SetAutoplayModeToggleCommand", typeof(ICommand), typeof(PlaybackControls),
+                new PropertyMetadata(null, null));
+        public ICommand SetAutoplayModeToggleCommand
+        {
+            get { return (ICommand)GetValue(SetAutoplayModeToggleCommandProperty); }
+            set { SetValue(SetAutoplayModeToggleCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty SetLoopPlayModeToggleCommandProperty =
+            DependencyProperty.Register("SetLoopPlayModeToggleCommand", typeof(ICommand), typeof(PlaybackControls),
+                new PropertyMetadata(null, null));
+        public ICommand SetLoopPlayModeToggleCommand
+        {
+            get { return (ICommand)GetValue(SetLoopPlayModeToggleCommandProperty); }
+            set { SetValue(SetLoopPlayModeToggleCommandProperty, value); }
+        }
+
         public static readonly DependencyProperty IsAutoPlayCheckedProperty =
             DependencyProperty.Register("IsAutoPlayChecked", typeof(bool), typeof(PlaybackControls),
                 new PropertyMetadata(false, null));
@@ -85,6 +114,10 @@ namespace WpfAudioControlLibrary.Controls
             get { return (bool)GetValue(IsLoopPlayCheckedProperty); }
             set { SetValue(IsLoopPlayCheckedProperty, value); }
         }
+
+
+
+        #endregion
 
         public PlaybackControls()
         {

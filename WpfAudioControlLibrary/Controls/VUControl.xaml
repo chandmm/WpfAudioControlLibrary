@@ -17,41 +17,66 @@
     </UserControl.Resources>
     <Grid behaviours:ActualSizeBehaviour.MonitorActualSize="True">
         <Viewbox Stretch="Uniform">
-            <!--Scale arcs-->
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#62e3f6" Width="400" Height="400">
-                <Path Stroke="Black" StrokeThickness="5">
-                    <Path.Data>
-                        <PathGeometry>
-                            <PathFigure StartPoint="35, 205">
-                                <PolyBezierSegment Points="130,150,260,150,360,205"/>
-                            </PathFigure>
-                            <PathFigure StartPoint="45, 220">
-                                <PolyBezierSegment Points="130,170,260,170,350,220"/>
-                            </PathFigure>
-                        </PathGeometry>
-                    </Path.Data>
-                </Path>
-                <Path Stroke="Black" StrokeThickness="25">
-                    <Path.Data>
-                        <PathGeometry>
-                            <PathFigure StartPoint="275, 181">
-                                <PolyBezierSegment Points="300,188,320,195,358,214"/>
-                            </PathFigure>
-                        </PathGeometry>
-                    </Path.Data>
-                </Path>
-                
-                <!--Scale markings-->
-                <Line X1="48" Y1="220" X2="15" Y2="180" Stroke="Black" StrokeThickness="5"/>
-                <Line X1="200" Y1="183" X2="200" Y2="140" Stroke="Black" StrokeThickness="5"/>
-                <Line X1="270" Y1="193" X2="283" Y2="148" Stroke="Black" StrokeThickness="5"/>
-                <Line X1="350" Y1="223" X2="380" Y2="185" Stroke="Black" StrokeThickness="5"/>
-                <Label Content="{Binding Mark1}" Margin="5,140,0,0"/>
-                <Label Content="{Binding Mark2}" Margin="180,100,0,0"/>
-                <Label Content="{Binding Mark3}" Margin="265,108,0,0"/>
-                <Label Content="{Binding Mark4}" Margin="350,140,0,0"/>
-                
-                <Line x:Name="needle" 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.RowSpan="2">
+                    <TextBlock 
+                        TextAlignment="Center" 
+                        TextWrapping="Wrap" 
+                        FontWeight="Bold"
+                        FontSize="28"
+                        Text="{Binding BackplateText}"
+                        Width="200" 
+                        VerticalAlignment="Center"
+                        Margin="0,100,0,0"/>
+                    <!--Scale arcs-->
+                    <Path Stroke="Black" StrokeThickness="5">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure StartPoint="35, 205">
+                                    <PolyBezierSegment Points="130,150,260,150,360,205"/>
+                                </PathFigure>
+                                <PathFigure StartPoint="45, 220">
+                                    <PolyBezierSegment Points="130,170,260,170,350,220"/>
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <Path Stroke="Black" StrokeThickness="25">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure StartPoint="275, 181">
+                                    <PolyBezierSegment Points="300,188,320,195,358,214"/>
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+
+                    <!--Scale markings-->
+                    <Line X1="48" Y1="220" X2="15" Y2="180" Stroke="Black" StrokeThickness="5"/>
+                    <Line X1="200" Y1="183" X2="200" Y2="140" Stroke="Black" StrokeThickness="5"/>
+                    <Line X1="270" Y1="193" X2="283" Y2="148" Stroke="Black" StrokeThickness="5"/>
+                    <Line X1="350" Y1="223" X2="380" Y2="185" Stroke="Black" StrokeThickness="5"/>
+                    <Label Content="{Binding Mark1}" Margin="5,140,0,0"/>
+                    <Label Content="{Binding Mark2}" Margin="180,100,0,0"/>
+                    <Label Content="{Binding Mark3}" Margin="265,108,0,0"/>
+                    <Label Content="{Binding Mark4}" Margin="350,140,0,0"/>
+
+                    <Ellipse
+                        Stroke="Black" 
+                        StrokeThickness="1"
+                        Fill="Black"
+                        Width="15" 
+                        Height="15" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Margin="40, 225, 0, 0" >
+                    </Ellipse>
+
+                    <Line x:Name="needle" 
                       StrokeEndLineCap="Round" 
                       X1="200" 
                       Y1="400" 
@@ -59,17 +84,9 @@
                       Y2="{Binding Y, FallbackValue=120}"
                       Stroke="Black" 
                       StrokeThickness="8"/>
-                <!-- FSD pixels: 30 to 375 centre= -->
-
-                <Path Fill="Black" Stroke="Black" StrokeThickness="2">
-                    <Path.Data>
-                        <PathGeometry>
-                            <PathFigure StartPoint="120, 400">
-                                <ArcSegment Point="280, 400" Size="20,20" SweepDirection="Clockwise" IsLargeArc="True" />
-                            </PathFigure>
-                        </PathGeometry>
-                    </Path.Data>
-                </Path>
+                    <!-- FSD pixels: 30 to 375 centre= -->
+                </Grid>
+                <Rectangle Grid.Row="1" Fill="Black" Stroke="Black" StrokeThickness="1"/>
             </Grid>
         </Viewbox>            
     </Grid>
