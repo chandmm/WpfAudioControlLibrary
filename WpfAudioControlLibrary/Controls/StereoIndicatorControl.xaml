@@ -19,7 +19,7 @@
                             <Setter Property="Fill" Value="#62e3f6"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMono}" Value="False">
-                                    <Setter Property="Fill" Value="#000010"/>
+                                    <Setter Property="Fill" Value="#000040"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -31,7 +31,7 @@
                             <Setter Property="Fill" Value="Red"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMono}" Value="True">
-                                    <Setter Property="Fill" Value="#100000"/>
+                                    <Setter Property="Fill" Value="#200000"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
