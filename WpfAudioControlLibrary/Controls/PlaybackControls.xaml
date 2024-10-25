@@ -15,7 +15,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition MinWidth="150"/>
             </Grid.ColumnDefinitions>
             <Button Command="{Binding SkipToStartCommand}">
                 <Button.Content>
@@ -90,8 +90,69 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <ToggleButton VerticalContentAlignment="Center" IsChecked="{Binding IsAutoPlayChecked}" Content="Autoplay" Margin="10,0,10,2"/>
-                <ToggleButton VerticalContentAlignment="Center" Grid.Row="1" IsChecked="{Binding IsLoopPlayChecked}" Content="Loop" Margin="10,2,10,0"/>
+                <Button VerticalContentAlignment="Center" 
+                    Command="{Binding SetAutoplayModeToggleCommand}"
+                    Margin="10,0,10,2">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Content" Value="Autoplay ON" />
+                            <Setter Property="Background" Value="#62e3f6" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border 
+                                            Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="10" 
+                                            Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsAutoPlayChecked}" Value="False">
+                                    <Setter Property="Content" Value="Autoplay OFF" />
+                                    <Setter Property="Background" Value="#000040" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button VerticalContentAlignment="Center" 
+                    Grid.Row="1"
+                    Command="{Binding SetLoopPlayModeToggleCommand}"
+                    Margin="10,2,10,0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Content" Value="Loop play ON"/>
+                            <Setter Property="Background" Value="#62e3f6"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border 
+                                            Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="10" 
+                                            Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsLoopPlayChecked}" Value="False">
+                                    <Setter Property="Background" Value="#000040"/>
+                                    <Setter Property="Content" Value="Loop play OFF"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </Grid>
         </Grid>
     </Grid>

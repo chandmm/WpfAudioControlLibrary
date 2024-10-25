@@ -121,6 +121,23 @@ namespace WpfAudioControlLibrary.Controls
 
         #region Events
 
+        private void Slider_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs args)
+        {
+            int delta = args.Delta;
+
+            if (delta > 0)
+            {
+                Volume = (Volume + 1) > Max ? Max : Volume + 1;
+            }
+            
+            if (delta < 0)
+            {
+                Volume = (Volume - 1) < Min ? Min : Volume - 1;
+            }
+
+            args.Handled = true;
+        }
+
         public void OnPropertyChanged([CallerMemberName] string? propertyName = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
