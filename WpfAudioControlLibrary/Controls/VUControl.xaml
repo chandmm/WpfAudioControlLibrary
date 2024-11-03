@@ -15,7 +15,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
     </UserControl.Resources>
-    <Grid behaviours:ActualSizeBehaviour.MonitorActualSize="True">
+    <Grid behaviours:ActualSizeBehaviour.MonitorActualSize="True" RenderOptions.BitmapScalingMode="LowQuality">
         <Viewbox Stretch="Uniform">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#62e3f6" Width="400" Height="400">
                 <Grid.RowDefinitions>
@@ -77,13 +77,12 @@
                     </Ellipse>
 
                     <Line x:Name="needle" 
-                      StrokeEndLineCap="Round" 
                       X1="200" 
                       Y1="400" 
                       X2="{Binding X, FallbackValue=200}" 
                       Y2="{Binding Y, FallbackValue=120}"
                       Stroke="Black" 
-                      StrokeThickness="8"/>
+                      StrokeThickness="4" IsHitTestVisible="False" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Disabled" UseLayoutRounding="False"/>
                     <!-- FSD pixels: 30 to 375 centre= -->
                 </Grid>
                 <Rectangle Grid.Row="1" Fill="Black" Stroke="Black" StrokeThickness="1"/>

@@ -193,6 +193,7 @@
             TickPlacement="TopLeft" Minimum="{Binding Minimum}" 
             Maximum="{Binding Maximum}" 
             Value="{Binding Value, Mode=TwoWay}"
-            Cursor="ScrollWE"/>
+            Cursor="ScrollWE"
+            IsMoveToPointEnabled="True"/>
     </Grid>
 </UserControl>
