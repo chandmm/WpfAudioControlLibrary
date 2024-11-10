@@ -89,6 +89,7 @@ namespace WpfAudioControlLibrary.Controls
         private static void OnValueChanged(DependencyObject dependency, DependencyPropertyChangedEventArgs args)
         {
             var control = (GainSliderControl)dependency;
+
             if (control.ViewModel != null)
             {
                 var property = control.ViewModel
