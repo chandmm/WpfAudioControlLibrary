@@ -26,7 +26,8 @@ namespace WpfAudioControlLibrary.Controls
         #region Dependency Properties
 
         public static readonly DependencyProperty MinimumProperty =
-           DependencyProperty.Register("Minimum", typeof(double?), typeof(VUControl), new PropertyMetadata(null, OnRangeChangedMinimum));
+           DependencyProperty.Register("Minimum", typeof(double?), typeof(VUControl), 
+               new PropertyMetadata(null, OnRangeChangedMinimum));
         public double? Minimum
         {
             get => (double?)GetValue(MinimumProperty);

@@ -83,7 +83,6 @@
                       Y2="{Binding Y, FallbackValue=120}"
                       Stroke="Black" 
                       StrokeThickness="4" IsHitTestVisible="False" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Disabled" UseLayoutRounding="False"/>
-                    <!-- FSD pixels: 30 to 375 centre= -->
                 </Grid>
                 <Rectangle Grid.Row="1" Fill="Black" Stroke="Black" StrokeThickness="1"/>
             </Grid>
