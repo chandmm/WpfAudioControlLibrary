@@ -99,6 +99,7 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
                 _value = value;
 
                 UpdateNeedlePosition();
+                UpdateOverDriveLight();
                 OnPropertyChanged();
             }
         }
@@ -175,6 +176,42 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
             }
         }
 
+        private string _mark5;
+        public string Mark5
+        {
+            get => _mark5;
+            set
+            {
+                _mark5 = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private string _mark6;
+        public string Mark6
+        {
+            get => _mark6;
+            set
+            {
+                _mark6 = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private string _meterLabel;
+        public string MeterLabel
+        {
+            get => _meterLabel;
+            set
+            {
+                _meterLabel = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         private string _backplateText;
         public string BackplateText
         {
@@ -182,6 +219,30 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
             set
             {
                 _backplateText = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isOverDrive;
+        public bool IsOverDrive
+        {
+            get => _isOverDrive;
+            set
+            {
+                _isOverDrive = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isUseCustomOverDriveSetting;
+        public bool IsUseCustomOverDriveSetting
+        {
+            get => _isUseCustomOverDriveSetting;
+            set
+            {
+                _isUseCustomOverDriveSetting = value;
 
                 OnPropertyChanged();
             }
@@ -196,9 +257,22 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
             FsdRange = defaultMmin - defaultMax;
             SetRatioMapToInternalRange();
             Value = defaultMmin;
+            IsOverDrive = false;
         }
 
         #region Logic
+
+        private void UpdateOverDriveLight()
+        {
+            if (IsUseCustomOverDriveSetting)
+            {
+                return;
+            }
+
+            var threshHold = (int)(Maximum * 0.85);
+
+            IsOverDrive = Value >= threshHold;
+        }
 
         public void UpdateNeedlePosition()
         {

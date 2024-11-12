@@ -45,11 +45,11 @@
                             </PathGeometry>
                         </Path.Data>
                     </Path>
-                    <Path Stroke="Black" StrokeThickness="25">
+                    <Path Stroke="Black" StrokeThickness="22">
                         <Path.Data>
                             <PathGeometry>
-                                <PathFigure StartPoint="275, 181">
-                                    <PolyBezierSegment Points="300,188,320,195,358,214"/>
+                                <PathFigure StartPoint="275, 182">
+                                    <PolyBezierSegment Points="310,190,325,197,355,214"/>
                                 </PathFigure>
                             </PathGeometry>
                         </Path.Data>
@@ -57,13 +57,25 @@
 
                     <!--Scale markings-->
                     <Line X1="48" Y1="220" X2="15" Y2="180" Stroke="Black" StrokeThickness="5"/>
+                    <Line X1="110" Y1="195" X2="90" Y2="150" Stroke="Black" StrokeThickness="5"/>
+                    <Line X1="159" Y1="185" X2="150" Y2="140" Stroke="Black" StrokeThickness="5"/>
                     <Line X1="200" Y1="183" X2="200" Y2="140" Stroke="Black" StrokeThickness="5"/>
                     <Line X1="270" Y1="193" X2="283" Y2="148" Stroke="Black" StrokeThickness="5"/>
-                    <Line X1="350" Y1="223" X2="380" Y2="185" Stroke="Black" StrokeThickness="5"/>
-                    <Label Content="{Binding Mark1}" Margin="5,140,0,0"/>
-                    <Label Content="{Binding Mark2}" Margin="180,100,0,0"/>
-                    <Label Content="{Binding Mark3}" Margin="265,108,0,0"/>
-                    <Label Content="{Binding Mark4}" Margin="350,140,0,0"/>
+                    <Line X1="348" Y1="222" X2="375" Y2="190" Stroke="Black" StrokeThickness="5"/>
+                    <Label FontSize="48" 
+                           FontWeight="Bold" 
+                           Content="-" 
+                           Margin="0,170,0,0"/>
+                    <Label FontSize="38" 
+                           FontWeight="Bold" 
+                           Content="+" 
+                            Margin="365,175,0,0"/>
+                    <Label Content="{Binding Mark1}" Margin="0,140,0,0"/>
+                    <Label Content="{Binding Mark2}" Margin="65,110,0,0"/>
+                    <Label Content="{Binding Mark3}" Margin="135,100,0,0"/>
+                    <Label Content="{Binding Mark4}" Margin="187,100,0,0"/>
+                    <Label Content="{Binding Mark5, FallbackValue=0}" Margin="272,108,0,0"/>
+                    <Label Content="{Binding Mark6}" Margin="370,145,0,0"/>
 
                     <Ellipse
                         Stroke="Black" 
@@ -84,8 +96,30 @@
                       Stroke="Black" 
                       StrokeThickness="4" IsHitTestVisible="False" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Disabled" UseLayoutRounding="False"/>
                 </Grid>
-                <Rectangle Grid.Row="1" Fill="Black" Stroke="Black" StrokeThickness="1"/>
+                <Grid Grid.Row="1">
+                    <Rectangle Fill="Black" Stroke="Black" StrokeThickness="1"/>
+                    <Label Foreground="#62e3f6" Content="{Binding MeterLabel}" HorizontalAlignment="Center"/>
+                </Grid>
+                <Ellipse VerticalAlignment="Top"
+                         HorizontalAlignment="Left"
+                         Height="25" 
+                         Width="25"
+                         Margin="350,25,0,0">
+                    <Ellipse.Resources>
+                        <Style TargetType="Ellipse">
+                            <Setter Property="Fill" Value="#550000"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsOverDrive, FallbackValue=False}" Value="True">
+                                    <Setter Property="Fill" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Resources>
+                    <Ellipse.Effect>
+                        <BlurEffect KernelType="Box"/>
+                    </Ellipse.Effect>
+                </Ellipse>
             </Grid>
-        </Viewbox>            
+        </Viewbox>
     </Grid>
 </UserControl>

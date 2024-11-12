@@ -113,6 +113,36 @@ namespace WpfAudioControlLibrary.Controls
             set => SetValue(Mark4Property, value);
         }
 
+        public static readonly DependencyProperty Mark5Property =
+           DependencyProperty.Register("Mark5", typeof(string), typeof(VUControl), new PropertyMetadata("100", (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+           {
+               if (dependencyObj is VUControl control
+                   && control.DataContext is VUControlViewModel viewModel)
+               {
+                   viewModel.Mark5 = (string)args.NewValue;
+               }
+           }));
+        public string Mark5
+        {
+            get => (string)GetValue(Mark5Property);
+            set => SetValue(Mark5Property, value);
+        }
+
+        public static readonly DependencyProperty Mark6Property =
+           DependencyProperty.Register("Mark6", typeof(string), typeof(VUControl), new PropertyMetadata("100", (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+           {
+               if (dependencyObj is VUControl control
+                   && control.DataContext is VUControlViewModel viewModel)
+               {
+                   viewModel.Mark6 = (string)args.NewValue;
+               }
+           }));
+        public string Mark6
+        {
+            get => (string)GetValue(Mark6Property);
+            set => SetValue(Mark6Property, value);
+        }
+
         public static readonly DependencyProperty BackplateTextProperty =
             DependencyProperty.Register("BackplateText", typeof(string), typeof(VUControl), new PropertyMetadata("Michael Chand VU", (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
             {
@@ -126,6 +156,51 @@ namespace WpfAudioControlLibrary.Controls
         {
             get => (string)GetValue(BackplateTextProperty);
             set => SetValue(BackplateTextProperty, value);
+        }
+
+        public static readonly DependencyProperty MeterLabelProperty =
+            DependencyProperty.Register("MeterLabel", typeof(string), typeof(VUControl), new PropertyMetadata("Michael Chand VU", (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is VUControl control
+                && control.DataContext is VUControlViewModel viewModel)
+                {
+                    viewModel.MeterLabel = (string)args.NewValue;
+                }
+            }));
+        public string MeterLabel
+        {
+            get => (string)GetValue(MeterLabelProperty);
+            set => SetValue(MeterLabelProperty, value);
+        }
+
+        public static readonly DependencyProperty IsOverDriveProperty =
+            DependencyProperty.Register("IsOverDrive", typeof(bool), typeof(VUControl), new PropertyMetadata(false, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is VUControl control
+                && control.DataContext is VUControlViewModel viewModel)
+                {
+                    viewModel.IsOverDrive = (bool)args.NewValue;
+                }
+            }));
+        public bool IsOverDrive
+        {
+            get => (bool)GetValue(IsOverDriveProperty);
+            set => SetValue(IsOverDriveProperty, value);
+        }
+
+        public static readonly DependencyProperty IsUseCustomOverDriveSettingProperty =
+            DependencyProperty.Register("IsUseCustomOverDriveSetting", typeof(bool), typeof(VUControl), new PropertyMetadata(false, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is VUControl control
+                && control.DataContext is VUControlViewModel viewModel)
+                {
+                    viewModel.IsUseCustomOverDriveSetting = (bool)args.NewValue;
+                }
+            }));
+        public bool IsUseCustomOverDriveSetting
+        {
+            get => (bool)GetValue(IsUseCustomOverDriveSettingProperty);
+            set => SetValue(IsUseCustomOverDriveSettingProperty, value);
         }
 
         #endregion
