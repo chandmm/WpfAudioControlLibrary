@@ -8,16 +8,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
     <UserControl.Resources>
-        <Style TargetType="Label">
-            <Setter Property="FontSize" Value="28"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Convertors/Convertors.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid behaviours:ActualSizeBehaviour.MonitorActualSize="True" RenderOptions.BitmapScalingMode="LowQuality">
         <Viewbox Stretch="Uniform">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="DodgerBlue" Width="400" Height="400">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{Binding BackgroundColour, Converter={StaticResource ColourInterpreterConvertor}}" Width="400" Height="400">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="50"/>
@@ -31,9 +36,10 @@
                         Text="{Binding BackplateText}"
                         Width="200" 
                         VerticalAlignment="Center"
+                        Foreground="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}"
                         Margin="0,100,0,0"/>
                     <!--Scale arcs-->
-                    <Path Stroke="Black" StrokeThickness="5">
+                    <Path Stroke="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" StrokeThickness="5">
                         <Path.Data>
                             <PathGeometry>
                                 <PathFigure StartPoint="35, 205">
@@ -45,7 +51,7 @@
                             </PathGeometry>
                         </Path.Data>
                     </Path>
-                    <Path Stroke="Black" StrokeThickness="22">
+                    <Path Stroke="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" StrokeThickness="22">
                         <Path.Data>
                             <PathGeometry>
                                 <PathFigure StartPoint="275, 182">
@@ -56,31 +62,45 @@
                     </Path>
 
                     <!--Scale markings-->
-                    <Line X1="48" Y1="220" X2="15" Y2="180" Stroke="Black" StrokeThickness="5"/>
-                    <Line X1="110" Y1="195" X2="90" Y2="150" Stroke="Black" StrokeThickness="5"/>
-                    <Line X1="159" Y1="185" X2="150" Y2="140" Stroke="Black" StrokeThickness="5"/>
-                    <Line X1="200" Y1="183" X2="200" Y2="140" Stroke="Black" StrokeThickness="5"/>
-                    <Line X1="270" Y1="193" X2="283" Y2="148" Stroke="Black" StrokeThickness="5"/>
-                    <Line X1="348" Y1="222" X2="375" Y2="190" Stroke="Black" StrokeThickness="5"/>
+                    <Line X1="48" Y1="220" X2="15" Y2="180" Stroke="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" StrokeThickness="5"/>
+                    <Line X1="110" Y1="195" X2="90" Y2="150" Stroke="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" StrokeThickness="5"/>
+                    <Line X1="159" Y1="185" X2="150" Y2="140" Stroke="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" StrokeThickness="5"/>
+                    <Line X1="200" Y1="183" X2="200" Y2="140" Stroke="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" StrokeThickness="5"/>
+                    <Line X1="270" Y1="193" X2="283" Y2="148" Stroke="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" StrokeThickness="5"/>
+                    <Line X1="348" Y1="222" X2="375" Y2="190" Stroke="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" StrokeThickness="5"/>
                     <Label FontSize="48" 
                            FontWeight="Bold" 
                            Content="-" 
+                           Foreground="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}"
                            Margin="0,170,0,0"/>
                     <Label FontSize="38" 
                            FontWeight="Bold" 
                            Content="+" 
-                            Margin="365,175,0,0"/>
-                    <Label Content="{Binding Mark1}" Margin="0,140,0,0"/>
-                    <Label Content="{Binding Mark2}" Margin="65,110,0,0"/>
-                    <Label Content="{Binding Mark3}" Margin="135,100,0,0"/>
-                    <Label Content="{Binding Mark4}" Margin="187,100,0,0"/>
-                    <Label Content="{Binding Mark5, FallbackValue=0}" Margin="272,108,0,0"/>
-                    <Label Content="{Binding Mark6}" Margin="370,145,0,0"/>
+                           Foreground="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}"
+                           Margin="365,175,0,0"/>
+                    <Label Content="{Binding Mark1}" 
+                           Foreground="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" 
+                           Margin="0,140,0,0"/>
+                    <Label Content="{Binding Mark2}" 
+                           Foreground="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" 
+                           Margin="65,110,0,0"/>
+                    <Label Content="{Binding Mark3}" 
+                           Foreground="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" 
+                           Margin="135,100,0,0"/>
+                    <Label Content="{Binding Mark4}" 
+                           Foreground="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" 
+                           Margin="187,100,0,0"/>
+                    <Label Content="{Binding Mark5, FallbackValue=0}" 
+                           Foreground="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" 
+                           Margin="272,108,0,0"/>
+                    <Label Content="{Binding Mark6}" 
+                           Foreground="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" 
+                           Margin="370,145,0,0"/>
 
                     <Ellipse
-                        Stroke="Black" 
+                        Stroke="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}" 
                         StrokeThickness="1"
-                        Fill="Black"
+                        Fill="{Binding DecalColour, Converter={StaticResource ColourInterpreterConvertor}}"
                         Width="15" 
                         Height="15" 
                         HorizontalAlignment="Left"
@@ -93,12 +113,16 @@
                       Y1="400" 
                       X2="{Binding X, FallbackValue=200}" 
                       Y2="{Binding Y, FallbackValue=120}"
-                      Stroke="Black" 
+                      Stroke="{Binding NeedleColour, Converter={StaticResource ColourInterpreterConvertor}}" 
                       StrokeThickness="4" IsHitTestVisible="False" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Disabled" UseLayoutRounding="False"/>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Rectangle Fill="Black" Stroke="Black" StrokeThickness="1"/>
-                    <Label Foreground="#62e3f6" Content="{Binding MeterLabel}" HorizontalAlignment="Center"/>
+                    <Rectangle Fill="{Binding BottomCoverFill, Converter={StaticResource ColourInterpreterConvertor}}" 
+                               Stroke="{Binding BottomCoverFill, Converter={StaticResource ColourInterpreterConvertor}}" 
+                               StrokeThickness="1"/>
+                    <Label Foreground="{Binding MeterLabelForeground, Converter={StaticResource ColourInterpreterConvertor}}" 
+                           Content="{Binding MeterLabel, Converter={StaticResource ColourInterpreterConvertor}}"
+                           HorizontalAlignment="Center"/>
                 </Grid>
                 <Ellipse VerticalAlignment="Top"
                          HorizontalAlignment="Left"
@@ -107,10 +131,10 @@
                          Margin="350,25,0,0">
                     <Ellipse.Resources>
                         <Style TargetType="Ellipse">
-                            <Setter Property="Fill" Value="#550000"/>
+                            <Setter Property="Fill" Value="{Binding OverdriveLampOffColour, Converter={StaticResource ColourInterpreterConvertor}}"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsOverDrive, FallbackValue=False}" Value="True">
-                                    <Setter Property="Fill" Value="Red"/>
+                                    <Setter Property="Fill" Value="{Binding OverdriveLampColour, Converter={StaticResource ColourInterpreterConvertor}}"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

@@ -203,6 +203,111 @@ namespace WpfAudioControlLibrary.Controls
             set => SetValue(IsUseCustomOverDriveSettingProperty, value);
         }
 
+        public static readonly DependencyProperty BackgroundColourProperty =
+            DependencyProperty.Register("BackgroundColour", typeof(string), typeof(VUControl), new PropertyMetadata("Transparent", (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is VUControl control
+                && control.DataContext is VUControlViewModel viewModel)
+                {
+                    viewModel.BackgroundColour = (string)args.NewValue;
+                }
+            }));
+        public string BackgroundColour
+        {
+            get => (string)GetValue(BackgroundColourProperty);
+            set => SetValue(BackgroundColourProperty, value);
+        }
+
+        public static readonly DependencyProperty NeedleColourProperty =
+            DependencyProperty.Register("NeedleColour", typeof(string), typeof(VUControl), new PropertyMetadata("Transparent", (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is VUControl control
+                && control.DataContext is VUControlViewModel viewModel)
+                {
+                    viewModel.NeedleColour = (string)args.NewValue;
+                }
+            }));
+        public string NeedleColour
+        {
+            get => (string)GetValue(NeedleColourProperty);
+            set => SetValue(NeedleColourProperty, value);
+        }
+
+        public static readonly DependencyProperty DecalColourProperty =
+            DependencyProperty.Register("DecalColour", typeof(string), typeof(VUControl), new PropertyMetadata("Transparent", (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is VUControl control
+                && control.DataContext is VUControlViewModel viewModel)
+                {
+                    viewModel.DecalColour = (string)args.NewValue;
+                }
+            }));
+        public string DecalColour
+        {
+            get => (string)GetValue(DecalColourProperty);
+            set => SetValue(DecalColourProperty, value);
+        }
+
+        public static readonly DependencyProperty OverdriveLampColourProperty =
+            DependencyProperty.Register("OverdriveLampColour", typeof(string), typeof(VUControl), new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is VUControl control
+                && control.DataContext is VUControlViewModel viewModel)
+                {
+                    viewModel.OverdriveLampColour = (string)args.NewValue;
+                }
+            }));
+        public string OverdriveLampColour
+        {
+            get => (string)GetValue(OverdriveLampColourProperty);
+            set => SetValue(OverdriveLampColourProperty, value);
+        }
+
+        public static readonly DependencyProperty OverdriveLampOffColourProperty =
+            DependencyProperty.Register("OverdriveLampOffColour", typeof(string), typeof(VUControl), new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is VUControl control
+                && control.DataContext is VUControlViewModel viewModel)
+                {
+                    viewModel.OverdriveLampOffColour = (string)args.NewValue;
+                }
+            }));
+        public string OverdriveLampOffColour
+        {
+            get => (string)GetValue(OverdriveLampOffColourProperty);
+            set => SetValue(OverdriveLampOffColourProperty, value);
+        }
+
+        public static readonly DependencyProperty MeterLabelForegroundProperty =
+            DependencyProperty.Register("MeterLabelForeground", typeof(string), typeof(VUControl), new PropertyMetadata("Transparent", (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is VUControl control
+                && control.DataContext is VUControlViewModel viewModel)
+                {
+                    viewModel.MeterLabelForeground = (string)args.NewValue;
+                }
+            }));
+        public string MeterLabelForeground
+        {
+            get => (string)GetValue(MeterLabelForegroundProperty);
+            set => SetValue(MeterLabelForegroundProperty, value);
+        }
+
+        public static readonly DependencyProperty BottomCoverFillProperty =
+            DependencyProperty.Register("BottomCoverFill", typeof(string), typeof(VUControl), new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is VUControl control
+                && control.DataContext is VUControlViewModel viewModel)
+                {
+                    viewModel.BottomCoverFill = (string)args.NewValue;
+                }
+            }));
+        public string BottomCoverFill
+        {
+            get => (string)GetValue(BottomCoverFillProperty);
+            set => SetValue(BottomCoverFillProperty, value);
+        }
+
         #endregion
 
         #region Initialisation

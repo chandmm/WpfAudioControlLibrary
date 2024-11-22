@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -248,6 +249,90 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
             }
         }
 
+        public string _backgroundColour;
+        public string BackgroundColour
+        {
+            get => _backgroundColour;
+            set
+            {
+                _backgroundColour = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private string _needleColour;
+        public string NeedleColour
+        {
+            get => _needleColour;
+            set
+            {
+                _needleColour = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private string _decalColour;
+        public string DecalColour
+        {
+            get => _decalColour;
+            set
+            {
+                _decalColour = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private string _overdriveLampColour;
+        public string OverdriveLampColour
+        {
+            get => _overdriveLampColour;
+            set
+            {
+                _overdriveLampColour = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private string _overdriveLampOffColour;
+        public string OverdriveLampOffColour
+        {
+            get => _overdriveLampOffColour;
+            set
+            {
+                _overdriveLampOffColour = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private string _meterLabelForeground;
+        public string MeterLabelForeground
+        {
+            get => _meterLabelForeground;
+            set
+            {
+                _meterLabelForeground = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private string _bottomCoverFill;
+        public string BottomCoverFill
+        {
+            get => _bottomCoverFill;
+            set
+            {
+                _bottomCoverFill = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         public int InternalFsd => _internalFsd;
 
         #endregion
@@ -258,6 +343,11 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
             SetRatioMapToInternalRange();
             Value = defaultMmin;
             IsOverDrive = false;
+
+            // Sanity colours so something shows by default.
+            BackgroundColour = "DodgerBlue";
+            NeedleColour = "Black";
+            DecalColour = "Black";
         }
 
         #region Logic
