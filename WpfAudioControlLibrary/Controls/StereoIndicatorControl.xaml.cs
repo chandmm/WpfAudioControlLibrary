@@ -22,27 +22,40 @@ using WpfAudioControlLibrary.Controls.ViewModels;
 
 namespace WpfAudioControlLibrary.Controls
 {
+    #region Properties
+
     public partial class StereoIndicatorControl : UserControl
     {
         public static readonly DependencyProperty IsMonoProperty =
             DependencyProperty.Register("IsMono", typeof(bool), typeof(StereoIndicatorControl),
-                new PropertyMetadata(false, null));
+                new PropertyMetadata(false, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is StereoIndicatorControl control
+                        && control.DataContext is StereoIndicatorControlViewModel viewModel)
+                    {
+                        viewModel.IsMono = (bool)args.NewValue;
+                    }
+                }));
         public bool IsMono
         {
             get { return (bool)GetValue(IsMonoProperty); }
             set { SetValue(IsMonoProperty, value); }
         }
 
+        #endregion
+
+        #region Style colour Properties
+
         public static readonly DependencyProperty MonoOnFillProperty =
-    DependencyProperty.Register("MonoOnFill", typeof(string), typeof(StereoIndicatorControl),
-        new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
-        {
-            if (dependencyObj is StereoIndicatorControl control
-                && control.DataContext is StereoIndicatorControlViewModel viewModel)
+        DependencyProperty.Register("MonoOnFill", typeof(string), typeof(StereoIndicatorControl),
+            new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
             {
-                viewModel.MonoOnFill = (string)args.NewValue;
-            }
-        }));
+                if (dependencyObj is StereoIndicatorControl control
+                    && control.DataContext is StereoIndicatorControlViewModel viewModel)
+                {
+                    viewModel.MonoOnFill = (string)args.NewValue;
+                }
+            }));
 
         public string MonoOnFill
         {
@@ -117,6 +130,8 @@ namespace WpfAudioControlLibrary.Controls
             get => (string)GetValue(LabelForegroundProperty);
             set => SetValue(LabelForegroundProperty, value);
         }
+
+        #endregion
 
         public StereoIndicatorControl()
         {

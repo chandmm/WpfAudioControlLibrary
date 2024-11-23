@@ -24,6 +24,24 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        #region Properties
+
+        private bool _isMono;
+        public bool IsMono
+        {
+            get => _isMono;
+            set
+            {
+                _isMono = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Style colour Properties
+
         private string _monoOnFill;
         public string MonoOnFill
         {
@@ -84,6 +102,7 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
             }
         }
 
+        #endregion
 
         public StereoIndicatorControlViewModel()
         {
