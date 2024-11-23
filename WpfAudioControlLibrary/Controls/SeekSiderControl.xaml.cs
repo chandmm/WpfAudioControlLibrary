@@ -23,16 +23,17 @@ namespace WpfAudioControlLibrary.Controls
 {
     public partial class SeekSiderControl : UserControl
     {
+        public SeekSliderControlViewModel ViewModel { get; private set; }
+
         #region Dependency Properties
 
         public static readonly DependencyProperty TickFrequencyProperty =
             DependencyProperty.Register("TickFrequency", typeof(double), typeof(SeekSiderControl),
                 new PropertyMetadata(0d, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                     {
-                        if (dependencyObj is SeekSiderControl control
-                            && control.DataContext is SeekSliderControlViewModel viewModel)
+                        if (dependencyObj is SeekSiderControl control)
                         {
-                            viewModel.TickFrequency = (double)args.NewValue;
+                            control.ViewModel.TickFrequency = (double)args.NewValue;
                         }
                     }));
         public double TickFrequency
@@ -45,10 +46,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("Minimum", typeof(double), typeof(SeekSiderControl),
                 new PropertyMetadata(0d, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.Minimum = (double)args.NewValue;
+                        control.ViewModel.Minimum = (double)args.NewValue;
                     }
                 }));
         public double Minimum
@@ -61,10 +61,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("Maximum", typeof(double), typeof(SeekSiderControl),
                 new PropertyMetadata(0d, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.Maximum = (double)args.NewValue;
+                        control.ViewModel.Maximum = (double)args.NewValue;
                     }
                 }));
         public double Maximum
@@ -77,10 +76,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("Value", typeof(double?), typeof(SeekSiderControl),
                 new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.Value = (double?)args.NewValue;
+                        control.ViewModel.Value = (double?)args.NewValue;
                     }
                 }));
         public double? Value
@@ -93,9 +91,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("ElapsedHours", typeof(int), typeof(SeekSiderControl),
                 new PropertyMetadata(0, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) => 
                 { 
-                    if (dependencyObj is SeekSiderControl control && control.DataContext is SeekSliderControlViewModel viewModel) 
+                    if (dependencyObj is SeekSiderControl control) 
                     { 
-                        viewModel.ElapsedHours = (int)args.NewValue; 
+                        control.ViewModel.ElapsedHours = (int)args.NewValue; 
                     } 
                 }));
         public int ElapsedHours
@@ -108,10 +106,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("ElapsedMinutes", typeof(int), typeof(SeekSiderControl),
                 new PropertyMetadata(0, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.ElapsedMinutes = (int)args.NewValue;
+                        control.ViewModel.ElapsedMinutes = (int)args.NewValue;
                     }
                 }));
         public int ElapsedMinutes
@@ -124,10 +121,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("ElapsedSeconds", typeof(int), typeof(SeekSiderControl),
                 new PropertyMetadata(0, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.ElapsedSeconds = (int)args.NewValue;
+                        control.ViewModel.ElapsedSeconds = (int)args.NewValue;
                     }
                 }));
         public int ElapsedSeconds
@@ -140,10 +136,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("DurationMinutes", typeof(int), typeof(SeekSiderControl),
                 new PropertyMetadata(0, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.DurationMinutes = (int)args.NewValue;
+                        control.ViewModel.DurationMinutes = (int)args.NewValue;
                     }
                 }));
         public int DurationMinutes
@@ -156,10 +151,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("DurationSeconds", typeof(int), typeof(SeekSiderControl),
                 new PropertyMetadata(0, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.DurationSeconds = (int)args.NewValue;
+                        control.ViewModel.DurationSeconds = (int)args.NewValue;
                     }
                 }));
         public int DurationSeconds
@@ -172,10 +166,9 @@ namespace WpfAudioControlLibrary.Controls
            DependencyProperty.Register("DurationHours", typeof(int), typeof(SeekSiderControl),
                new PropertyMetadata(0, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                {
-                   if (dependencyObj is SeekSiderControl control
-                       && control.DataContext is SeekSliderControlViewModel viewModel)
+                   if (dependencyObj is SeekSiderControl control)
                    {
-                       viewModel.DurationHours = (int)args.NewValue;
+                       control.ViewModel.DurationHours = (int)args.NewValue;
                    }
                }));
         public int DurationHours
@@ -184,15 +177,17 @@ namespace WpfAudioControlLibrary.Controls
             set { SetValue(DurationHoursProperty, value); }
         }
 
+        #endregion
+
+        #region Style Colours
 
         public static readonly DependencyProperty SliderThumbGlowOverlayProperty =
            DependencyProperty.Register("SliderThumbGlowOverlay", typeof(string), typeof(SeekSiderControl),
                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                {
-                   if (dependencyObj is SeekSiderControl control
-                       && control.DataContext is SeekSliderControlViewModel viewModel)
+                   if (dependencyObj is SeekSiderControl control)
                    {
-                       viewModel.SliderThumbGlowOverlay = (string)args.NewValue;
+                       control.ViewModel.SliderThumbGlowOverlay = (string)args.NewValue;
                    }
                }));
         public string SliderThumbGlowOverlay
@@ -202,15 +197,14 @@ namespace WpfAudioControlLibrary.Controls
         }
 
         public static readonly DependencyProperty SliderThumbGripBarBackgroundProperty =
-    DependencyProperty.Register("SliderThumbGripBarBackground", typeof(string), typeof(SeekSiderControl),
-        new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
-        {
-            if (dependencyObj is SeekSiderControl control
-                && control.DataContext is SeekSliderControlViewModel viewModel)
-            {
-                viewModel.SliderThumbGripBarBackground = (string)args.NewValue;
-            }
-        }));
+            DependencyProperty.Register("SliderThumbGripBarBackground", typeof(string), typeof(SeekSiderControl),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is SeekSiderControl control)
+                    {
+                        control.ViewModel.SliderThumbGripBarBackground = (string)args.NewValue;
+                    }
+                }));
 
         public string SliderThumbGripBarBackground
         {
@@ -222,10 +216,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("SliderThumbPointBackground", typeof(string), typeof(SeekSiderControl),
                 new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.SliderThumbPointBackground = (string)args.NewValue;
+                        control.ViewModel.SliderThumbPointBackground = (string)args.NewValue;
                     }
                 }));
 
@@ -239,10 +232,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("SliderThumbBorder", typeof(string), typeof(SeekSiderControl),
                 new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.SliderThumbBorder = (string)args.NewValue;
+                        control.ViewModel.SliderThumbBorder = (string)args.NewValue;
                     }
                 }));
 
@@ -256,10 +248,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("SliderThumbForeground", typeof(string), typeof(SeekSiderControl),
                 new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.SliderThumbForeground = (string)args.NewValue;
+                        control.ViewModel.SliderThumbForeground = (string)args.NewValue;
                     }
                 }));
 
@@ -273,10 +264,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("SliderThumbMouseOverBackground", typeof(string), typeof(SeekSiderControl),
                 new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.SliderThumbMouseOverBackground = (string)args.NewValue;
+                        control.ViewModel.SliderThumbMouseOverBackground = (string)args.NewValue;
                     }
                 }));
 
@@ -290,10 +280,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("SliderThumbMouseOverBorder", typeof(string), typeof(SeekSiderControl),
                 new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.SliderThumbMouseOverBorder = (string)args.NewValue;
+                        control.ViewModel.SliderThumbMouseOverBorder = (string)args.NewValue;
                     }
                 }));
 
@@ -307,10 +296,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("SliderThumbPressedBackground", typeof(string), typeof(SeekSiderControl),
                 new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.SliderThumbPressedBackground = (string)args.NewValue;
+                        control.ViewModel.SliderThumbPressedBackground = (string)args.NewValue;
                     }
                 }));
 
@@ -324,10 +312,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("SliderThumbPressedBorder", typeof(string), typeof(SeekSiderControl),
                 new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.SliderThumbPressedBorder = (string)args.NewValue;
+                        control.ViewModel.SliderThumbPressedBorder = (string)args.NewValue;
                     }
                 }));
 
@@ -341,10 +328,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("SliderThumbDisabledBackground", typeof(string), typeof(SeekSiderControl),
                 new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.SliderThumbDisabledBackground = (string)args.NewValue;
+                        control.ViewModel.SliderThumbDisabledBackground = (string)args.NewValue;
                     }
                 }));
 
@@ -358,10 +344,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("SliderThumbDisabledBorder", typeof(string), typeof(SeekSiderControl),
                 new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.SliderThumbDisabledBorder = (string)args.NewValue;
+                        control.ViewModel.SliderThumbDisabledBorder = (string)args.NewValue;
                     }
                 }));
 
@@ -375,10 +360,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("SliderThumbTrackBackground", typeof(string), typeof(SeekSiderControl),
                 new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.SliderThumbTrackBackground = (string)args.NewValue;
+                        control.ViewModel.SliderThumbTrackBackground = (string)args.NewValue;
                     }
                 }));
 
@@ -392,10 +376,9 @@ namespace WpfAudioControlLibrary.Controls
             DependencyProperty.Register("SliderThumbTrackBorder", typeof(string), typeof(SeekSiderControl),
                 new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
-                    if (dependencyObj is SeekSiderControl control
-                        && control.DataContext is SeekSliderControlViewModel viewModel)
+                    if (dependencyObj is SeekSiderControl control)
                     {
-                        viewModel.SliderThumbTrackBorder = (string)args.NewValue;
+                        control.ViewModel.SliderThumbTrackBorder = (string)args.NewValue;
                     }
                 }));
 
@@ -414,7 +397,9 @@ namespace WpfAudioControlLibrary.Controls
         {
             InitializeComponent();
 
-            DataContext = new SeekSliderControlViewModel();
+            ViewModel = new SeekSliderControlViewModel();
+
+            DataContext = this;
         }
 
         #endregion
