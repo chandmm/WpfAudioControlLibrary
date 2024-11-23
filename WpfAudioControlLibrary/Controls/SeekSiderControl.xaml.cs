@@ -74,18 +74,18 @@ namespace WpfAudioControlLibrary.Controls
         }
 
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(double), typeof(SeekSiderControl),
-                new PropertyMetadata(0d, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            DependencyProperty.Register("Value", typeof(double?), typeof(SeekSiderControl),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
                 {
                     if (dependencyObj is SeekSiderControl control
                         && control.DataContext is SeekSliderControlViewModel viewModel)
                     {
-                        viewModel.Value = (double)args.NewValue;
+                        viewModel.Value = (double?)args.NewValue;
                     }
                 }));
-        public double Value
+        public double? Value
         {
-            get { return (double)GetValue(ValueProperty); }
+            get { return (double?)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
 

@@ -18,6 +18,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WpfAudioControlLibrary.Controls.ViewModels;
 
 namespace WpfAudioControlLibrary.Controls
 {
@@ -32,9 +33,63 @@ namespace WpfAudioControlLibrary.Controls
             set { SetValue(ExitCommandProperty, value); }
         }
 
+        public static readonly DependencyProperty PowerButtonLightFillProperty =
+    DependencyProperty.Register("PowerButtonLightFill", typeof(string), typeof(PowerButtonControl),
+        new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+        {
+            if (dependencyObj is PowerButtonControl control
+                && control.DataContext is PowerButtonControlViewModel viewModel)
+            {
+                viewModel.PowerButtonLightFill = (string)args.NewValue;
+            }
+        }));
+
+        public string PowerButtonLightFill
+        {
+            get => (string)GetValue(PowerButtonLightFillProperty);
+            set => SetValue(PowerButtonLightFillProperty, value);
+        }
+
+        public static readonly DependencyProperty PowerButtonStrokeFillProperty =
+            DependencyProperty.Register("PowerButtonStrokeFill", typeof(string), typeof(PowerButtonControl),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PowerButtonControl control
+                        && control.DataContext is PowerButtonControlViewModel viewModel)
+                    {
+                        viewModel.PowerButtonStrokeFill = (string)args.NewValue;
+                    }
+                }));
+
+        public string PowerButtonStrokeFill
+        {
+            get => (string)GetValue(PowerButtonStrokeFillProperty);
+            set => SetValue(PowerButtonStrokeFillProperty, value);
+        }
+
+        public static readonly DependencyProperty PowerButtonHighlightProperty =
+            DependencyProperty.Register("PowerButtonHighlight", typeof(string), typeof(PowerButtonControl),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PowerButtonControl control
+                        && control.DataContext is PowerButtonControlViewModel viewModel)
+                    {
+                        viewModel.PowerButtonHighlight = (string)args.NewValue;
+                    }
+                }));
+
+        public string PowerButtonHighlight
+        {
+            get => (string)GetValue(PowerButtonHighlightProperty);
+            set => SetValue(PowerButtonHighlightProperty, value);
+        }
+
+
         public PowerButtonControl()
         {
             InitializeComponent();
+
+            DataContext = new PowerButtonControlViewModel();
         }
     }
 }

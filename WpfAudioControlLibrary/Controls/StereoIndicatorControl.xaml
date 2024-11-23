@@ -6,6 +6,13 @@
              xmlns:local="clr-namespace:WpfAudioControlLibrary.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="100">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Convertors/Convertors.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Viewbox Stretch="Uniform">
             <Grid>
@@ -16,10 +23,10 @@
                 <Rectangle>
                     <Rectangle.Resources>
                         <Style TargetType="Rectangle">
-                            <Setter Property="Fill" Value="#62e3f6"/>
+                            <Setter Property="Fill" Value="{Binding MonoOnFill, Converter={StaticResource ColourInterpreterConvertor}}"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMono}" Value="False">
-                                    <Setter Property="Fill" Value="#000040"/>
+                                    <Setter Property="Fill" Value="{Binding MonoOffFill, Converter={StaticResource ColourInterpreterConvertor}}"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -28,17 +35,27 @@
                 <Rectangle Grid.Column="1">
                     <Rectangle.Resources>
                         <Style TargetType="Rectangle">
-                            <Setter Property="Fill" Value="Red"/>
+                            <Setter Property="Fill" Value="{Binding StereoOnFill, Converter={StaticResource ColourInterpreterConvertor}}"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMono}" Value="True">
-                                    <Setter Property="Fill" Value="#200000"/>
+                                    <Setter Property="Fill" Value="{Binding StereoOffFill, Converter={StaticResource ColourInterpreterConvertor}}"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Rectangle.Resources>
                 </Rectangle>
-                <TextBlock FontFamily="Ariel" FontWeight="DemiBold" Text="Mono" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock FontFamily="Ariel" FontWeight="DemiBold" Grid.Column="1" Text="Stereo" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock FontFamily="Ariel" 
+                           FontWeight="DemiBold" 
+                           Text="Mono" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Center"
+                           Foreground="{Binding LabelForeground, Converter={StaticResource ColourInterpreterConvertor}}"/>
+                <TextBlock FontFamily="Ariel" 
+                           FontWeight="DemiBold"
+                           Grid.Column="1" Text="Stereo" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Center"
+                           Foreground="{Binding LabelForeground, Converter={StaticResource ColourInterpreterConvertor}}"/>
             </Grid>
         </Viewbox>
     </Grid>
