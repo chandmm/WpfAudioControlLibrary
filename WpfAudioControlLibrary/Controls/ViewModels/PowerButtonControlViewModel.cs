@@ -17,6 +17,7 @@
 */
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace WpfAudioControlLibrary.Controls.ViewModels
 {
@@ -59,6 +60,23 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
                 OnPropertyChanged();
             }
         }
+
+
+        #region Commands
+
+        private ICommand _exitCommand;
+        public ICommand ExitCommand
+        {
+            get => _exitCommand;
+            set
+            {
+                _exitCommand = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
 
         public PowerButtonControlViewModel()
         {

@@ -26,7 +26,14 @@ namespace WpfAudioControlLibrary.Controls
     {
         public static readonly DependencyProperty ExitCommandProperty =
             DependencyProperty.Register("ExitCommand", typeof(ICommand), typeof(PowerButtonControl),
-                new PropertyMetadata(null, null));
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PowerButtonControl control
+                       && control.DataContext is PowerButtonControlViewModel viewModel)
+                    {
+                        viewModel.ExitCommand = (ICommand)args.NewValue;
+                    }
+                }));
         public ICommand ExitCommand
         {
             get { return (ICommand)GetValue(ExitCommandProperty); }
@@ -34,15 +41,15 @@ namespace WpfAudioControlLibrary.Controls
         }
 
         public static readonly DependencyProperty PowerButtonLightFillProperty =
-    DependencyProperty.Register("PowerButtonLightFill", typeof(string), typeof(PowerButtonControl),
-        new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
-        {
-            if (dependencyObj is PowerButtonControl control
-                && control.DataContext is PowerButtonControlViewModel viewModel)
-            {
-                viewModel.PowerButtonLightFill = (string)args.NewValue;
-            }
-        }));
+            DependencyProperty.Register("PowerButtonLightFill", typeof(string), typeof(PowerButtonControl),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PowerButtonControl control
+                        && control.DataContext is PowerButtonControlViewModel viewModel)
+                    {
+                        viewModel.PowerButtonLightFill = (string)args.NewValue;
+                    }
+                }));
 
         public string PowerButtonLightFill
         {
