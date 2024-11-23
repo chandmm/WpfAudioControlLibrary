@@ -101,6 +101,50 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
 
         #endregion
 
+        #region Style colour properties
+
+        private string _gainSliderMidBarFill;
+        public string GainSliderMidBarFill
+        {
+            get => _gainSliderMidBarFill;
+            set
+            {
+                _gainSliderMidBarFill = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _gainSliderTextForeground;
+        public string GainSliderTextForeground
+        {
+            get => _gainSliderTextForeground;
+            set
+            {
+                _gainSliderTextForeground = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _gainSliderTickForeground;
+        public string GainSliderTickForeground
+        {
+            get => _gainSliderTickForeground;
+            set
+            {
+                _gainSliderTickForeground = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        public GainSliderControlViewModel()
+        {
+            GainSliderMidBarFill = "Red";
+            GainSliderTextForeground = "White";
+            GainSliderTickForeground = "White";
+        }
+
         #region Methods
 
         public int ChangeGainFromMouseWheel(int delta)

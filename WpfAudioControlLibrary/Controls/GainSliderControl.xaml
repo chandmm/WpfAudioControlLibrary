@@ -6,6 +6,13 @@
              xmlns:local="clr-namespace:WpfAudioControlLibrary.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="200">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Convertors/Convertors.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     
     <Viewbox Stretch="Uniform">
         <Grid>
@@ -19,13 +26,13 @@
                 <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
             <Label Content="{Binding Max, Mode=OneWay}" 
-                Foreground="White"
+                Foreground="{Binding GainSliderTextForeground, Converter={StaticResource ColourInterpreterConvertor}}"
                 VerticalAlignment="Top"
                 VerticalContentAlignment="Top"
                 Padding="0,0,0,0"
                 Grid.Column="1"/>
             <StackPanel Orientation="Horizontal" Grid.RowSpan="3">
-                <Label Foreground="White" 
+                <Label Foreground="{Binding GainSliderTextForeground, Converter={StaticResource ColourInterpreterConvertor}}" 
                    Content="{Binding Gain, Mode=OneWay}" 
                    Background="Transparent" BorderThickness="0"
                    VerticalAlignment="Center"
@@ -33,7 +40,7 @@
                    Width="40"/>
                 <Grid>
                     <Border 
-                        BorderBrush="Red" 
+                        BorderBrush="{Binding GainSliderMidBarFill, Converter={StaticResource ColourInterpreterConvertor}}" 
                         BorderThickness="1" 
                         VerticalAlignment="Center"/>
                     <Slider Minimum="{Binding Min, Mode=OneWay}"
@@ -46,24 +53,27 @@
                         HorizontalAlignment="Center"
                         Margin="2"
                         MouseWheel="Slider_MouseWheel"
-                        MinHeight="170"/>
+                        MinHeight="170"
+                        Foreground="{Binding GainSliderTickForeground, Converter={StaticResource ColourInterpreterConvertor}}"/>
                 </Grid>
             </StackPanel>
             <ItemsControl ItemsSource="{Binding ControlLabel}"
-                          Foreground="White"
+                          Foreground="{Binding GainSliderTextForeground, Converter={StaticResource ColourInterpreterConvertor}}"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Left"
                           Grid.Column="1"
                           Grid.Row="1">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding}" HorizontalAlignment="Center" Foreground="White"/>
+                        <Label Content="{Binding}" 
+                               HorizontalAlignment="Center" 
+                               Foreground="{Binding Path=DataContext.GainSliderTextForeground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}, Converter={StaticResource ColourInterpreterConvertor}}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
             <Label VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Padding="0,2,0,0"
                 Content="{Binding Min, Mode=OneWay}" 
-                Foreground="White"
+                Foreground="{Binding GainSliderTextForeground, Converter={StaticResource ColourInterpreterConvertor}}"
                 Grid.Row="3" 
                 Grid.Column="1" />
         </Grid>

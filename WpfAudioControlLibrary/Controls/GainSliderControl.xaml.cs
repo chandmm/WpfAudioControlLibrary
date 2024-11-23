@@ -23,6 +23,8 @@ namespace WpfAudioControlLibrary.Controls
 {
     public partial class GainSliderControl : UserControl
     {
+        #region Properties
+
         public GainSliderControlViewModel ViewModel { get; private set; }
 
         public static readonly DependencyProperty GainProperty =
@@ -63,6 +65,64 @@ namespace WpfAudioControlLibrary.Controls
             get { return (int?)GetValue(MinProperty); }
             set { SetValue(MinProperty, value); }
         }
+
+        #endregion
+
+        #region Style Colour Properties
+
+        public static readonly DependencyProperty GainSliderMidBarFillProperty =
+        DependencyProperty.Register("GainSliderMidBarFill", typeof(string), typeof(GainSliderControl),
+            new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is GainSliderControl control
+                    && control.DataContext is GainSliderControlViewModel viewModel)
+                {
+                    viewModel.GainSliderMidBarFill = (string)args.NewValue;
+                }
+            }));
+
+        public string GainSliderMidBarFill
+        {
+            get => (string)GetValue(GainSliderMidBarFillProperty);
+            set => SetValue(GainSliderMidBarFillProperty, value);
+        }
+
+        public static readonly DependencyProperty GainSliderTextForegroundProperty =
+            DependencyProperty.Register("GainSliderTextForeground", typeof(string), typeof(GainSliderControl),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is GainSliderControl control
+                        && control.DataContext is GainSliderControlViewModel viewModel)
+                    {
+                        viewModel.GainSliderTextForeground = (string)args.NewValue;
+                    }
+                }));
+
+        public string GainSliderTextForeground
+        {
+            get => (string)GetValue(GainSliderTextForegroundProperty);
+            set => SetValue(GainSliderTextForegroundProperty, value);
+        }
+
+        public static readonly DependencyProperty GainSliderTickForegroundProperty =
+            DependencyProperty.Register("GainSliderTickForeground", typeof(string), typeof(GainSliderControl),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is GainSliderControl control
+                        && control.DataContext is GainSliderControlViewModel viewModel)
+                    {
+                        viewModel.GainSliderTickForeground = (string)args.NewValue;
+                    }
+                }));
+
+        public string GainSliderTickForeground
+        {
+            get => (string)GetValue(GainSliderTickForegroundProperty);
+            set => SetValue(GainSliderTickForegroundProperty, value);
+        }
+
+
+        #endregion
 
         public GainSliderControl()
         {
