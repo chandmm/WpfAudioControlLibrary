@@ -17,6 +17,7 @@
 */
 using System.Windows;
 using System.Windows.Controls;
+using WpfAudioControlLibrary.Controls.ViewModels;
 
 namespace WpfAudioControlLibrary.Controls
 {
@@ -24,16 +25,63 @@ namespace WpfAudioControlLibrary.Controls
     {
         public static readonly DependencyProperty IsOnProperty =
             DependencyProperty.Register("IsOn", typeof(bool), typeof(PlayIndicatorControl),
-                new PropertyMetadata(false, null));
+                new PropertyMetadata(false, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PlayIndicatorControl control
+                        && control.DataContext is PlaybackIndicatorControlViewModel viewModel)
+                    {
+                        viewModel.IsOn = (bool)args.NewValue;
+                    }
+                }));
+
         public bool IsOn
         {
             get { return (bool)GetValue(IsOnProperty); }
             set { SetValue(IsOnProperty, value); }
         }
 
+
+        #region Style colour Properties
+
+        public static readonly DependencyProperty OffColourProperty =
+        DependencyProperty.Register("OffColour", typeof(string), typeof(PlayIndicatorControl),
+            new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is PlayIndicatorControl control
+                    && control.DataContext is PlaybackIndicatorControlViewModel viewModel)
+                {
+                    viewModel.OffColour = (string)args.NewValue;
+                }
+            }));
+
+        public string OffColour
+        {
+            get => (string)GetValue(OffColourProperty);
+            set => SetValue(OffColourProperty, value);
+        }
+
+        public static readonly DependencyProperty OnColourProperty =
+        DependencyProperty.Register("OnColour", typeof(string), typeof(PlayIndicatorControl),
+            new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is PlayIndicatorControl control
+                    && control.DataContext is PlaybackIndicatorControlViewModel viewModel)
+                {
+                    viewModel.OnColour = (string)args.NewValue;
+                }
+            }));
+
+        public string OnColour
+        {
+            get => (string)GetValue(OnColourProperty);
+            set => SetValue(OnColourProperty, value);
+        }
+
+        #endregion
+
         public PlayIndicatorControl()
         {
-            DataContext = this;
+            DataContext = new PlaybackIndicatorControlViewModel();
             InitializeComponent();
         }
     }

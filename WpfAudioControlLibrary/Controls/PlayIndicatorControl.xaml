@@ -12,13 +12,13 @@
         <Rectangle>
             <Rectangle.Resources>
                 <Style TargetType="Rectangle">
-                    <Setter Property="Fill" Value="#00004A"/>
+                    <Setter Property="Fill" Value="{Binding OffColour}"/>
                     <Setter Property="Stretch" Value="Fill"/>
                     <Setter Property="Height" Value="10"/>
                     <Setter Property="Width" Value="100"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsOn}" Value="True">
-                            <Setter Property="Fill" Value="#0020FF"/>
+                            <Setter Property="Fill" Value="{Binding OnColour}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
