@@ -18,6 +18,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WpfAudioControlLibrary.Controls.ViewModels;
 
 namespace WpfAudioControlLibrary.Controls
 {
@@ -115,6 +116,162 @@ namespace WpfAudioControlLibrary.Controls
             set { SetValue(IsLoopPlayCheckedProperty, value); }
         }
 
+        #endregion
+
+        #region Style Colour properties
+
+        public static readonly DependencyProperty SkipToStartButtonFillProperty =
+        DependencyProperty.Register("SkipToStartButtonFill", typeof(string), typeof(PlaybackControls),
+            new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is PlaybackControls control
+                    && control.DataContext is PlaybackControlsViewModel viewModel)
+                {
+                    viewModel.SkipToStartButtonFill = (string)args.NewValue;
+                }
+            }));
+
+        public string SkipToStartButtonFill
+        {
+            get => (string)GetValue(SkipToStartButtonFillProperty);
+            set => SetValue(SkipToStartButtonFillProperty, value);
+        }
+
+        public static readonly DependencyProperty StopButtonFillProperty =
+            DependencyProperty.Register("StopButtonFill", typeof(string), typeof(PlaybackControls),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PlaybackControls control
+                        && control.DataContext is PlaybackControlsViewModel viewModel)
+                    {
+                        viewModel.StopButtonFill = (string)args.NewValue;
+                    }
+                }));
+
+        public string StopButtonFill
+        {
+            get => (string)GetValue(StopButtonFillProperty);
+            set => SetValue(StopButtonFillProperty, value);
+        }
+
+        public static readonly DependencyProperty PlayButtonFillProperty =
+            DependencyProperty.Register("PlayButtonFill", typeof(string), typeof(PlaybackControls),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PlaybackControls control
+                        && control.DataContext is PlaybackControlsViewModel viewModel)
+                    {
+                        viewModel.PlayButtonFill = (string)args.NewValue;
+                    }
+                }));
+
+        public string PlayButtonFill
+        {
+            get => (string)GetValue(PlayButtonFillProperty);
+            set => SetValue(PlayButtonFillProperty, value);
+        }
+
+        public static readonly DependencyProperty PauseButtonFillProperty =
+            DependencyProperty.Register("PauseButtonFill", typeof(string), typeof(PlaybackControls),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PlaybackControls control
+                        && control.DataContext is PlaybackControlsViewModel viewModel)
+                    {
+                        viewModel.PauseButtonFill = (string)args.NewValue;
+                    }
+                }));
+
+        public string PauseButtonFill
+        {
+            get => (string)GetValue(PauseButtonFillProperty);
+            set => SetValue(PauseButtonFillProperty, value);
+        }
+
+        public static readonly DependencyProperty SkipToEndButtonFillProperty =
+            DependencyProperty.Register("SkipToEndButtonFill", typeof(string), typeof(PlaybackControls),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PlaybackControls control
+                        && control.DataContext is PlaybackControlsViewModel viewModel)
+                    {
+                        viewModel.SkipToEndButtonFill = (string)args.NewValue;
+                    }
+                }));
+
+        public string SkipToEndButtonFill
+        {
+            get => (string)GetValue(SkipToEndButtonFillProperty);
+            set => SetValue(SkipToEndButtonFillProperty, value);
+        }
+
+        public static readonly DependencyProperty SelectButtonFillProperty =
+            DependencyProperty.Register("SelectButtonFill", typeof(string), typeof(PlaybackControls),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PlaybackControls control
+                        && control.DataContext is PlaybackControlsViewModel viewModel)
+                    {
+                        viewModel.SelectButtonFill = (string)args.NewValue;
+                    }
+                }));
+
+        public string SelectButtonFill
+        {
+            get => (string)GetValue(SelectButtonFillProperty);
+            set => SetValue(SelectButtonFillProperty, value);
+        }
+
+        public static readonly DependencyProperty SwitchOnBackgroundProperty =
+            DependencyProperty.Register("SwitchOnBackground", typeof(string), typeof(PlaybackControls),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PlaybackControls control
+                        && control.DataContext is PlaybackControlsViewModel viewModel)
+                    {
+                        viewModel.SwitchOnBackground = (string)args.NewValue;
+                    }
+                }));
+
+        public string SwitchOnBackground
+        {
+            get => (string)GetValue(SwitchOnBackgroundProperty);
+            set => SetValue(SwitchOnBackgroundProperty, value);
+        }
+
+        public static readonly DependencyProperty SwitchOffBackgroundProperty =
+            DependencyProperty.Register("SwitchOffBackground", typeof(string), typeof(PlaybackControls),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PlaybackControls control
+                        && control.DataContext is PlaybackControlsViewModel viewModel)
+                    {
+                        viewModel.SwitchOffBackground = (string)args.NewValue;
+                    }
+                }));
+
+        public string SwitchOffBackground
+        {
+            get => (string)GetValue(SwitchOffBackgroundProperty);
+            set => SetValue(SwitchOffBackgroundProperty, value);
+        }
+
+        public static readonly DependencyProperty SwitchForegroundProperty =
+            DependencyProperty.Register("SwitchForeground", typeof(string), typeof(PlaybackControls),
+                new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+                {
+                    if (dependencyObj is PlaybackControls control
+                        && control.DataContext is PlaybackControlsViewModel viewModel)
+                    {
+                        viewModel.SwitchForeground = (string)args.NewValue;
+                    }
+                }));
+
+        public string SwitchForeground
+        {
+            get => (string)GetValue(SwitchForegroundProperty);
+            set => SetValue(SwitchForegroundProperty, value);
+        }
 
 
         #endregion

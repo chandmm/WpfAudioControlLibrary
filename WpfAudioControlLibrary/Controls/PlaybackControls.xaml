@@ -6,6 +6,13 @@
              xmlns:local="clr-namespace:WpfAudioControlLibrary.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Convertors/Convertors.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -21,8 +28,8 @@
                 <Button.Content>
                     <Viewbox Stretch="Uniform">
                         <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="5" Height="25" Fill="Black" Margin="2"/>
-                            <Polygon Points="20, 2, 20, 27, 0, 14.5" Fill="Black"/>
+                            <Rectangle Width="5" Height="25" Fill="{Binding SkipToStartButtonFill, Converter={StaticResource ColourInterpreterConvertor}}" Margin="2"/>
+                            <Polygon Points="20, 2, 20, 27, 0, 14.5" Fill="{Binding SkipToStartButtonFill, Converter={StaticResource ColourInterpreterConvertor}}"/>
                         </StackPanel>
                     </Viewbox>
                 </Button.Content>
@@ -31,7 +38,7 @@
                 <Button.Content>
                     <Viewbox Stretch="Uniform" Margin="5">
                         <Grid>
-                            <Rectangle Width="25" Height="25" Fill="Black"/>
+                            <Rectangle Width="25" Height="25" Fill="{Binding StopButtonFill, Converter={StaticResource ColourInterpreterConvertor}}"/>
                         </Grid>
                     </Viewbox>
                 </Button.Content>
@@ -40,7 +47,7 @@
                 <Button.Content>
                     <Viewbox Stretch="Uniform">
                         <Grid Background="Transparent" Margin="2">
-                            <Polygon Points="0,0 0,26 25,13" Fill="Black"/>
+                            <Polygon Points="0,0 0,26 25,13" Fill="{Binding PlayButtonFill, Converter={StaticResource ColourInterpreterConvertor}}"/>
                         </Grid>
                     </Viewbox>
                 </Button.Content>
@@ -49,8 +56,8 @@
                 <Button.Content>
                     <Viewbox Stretch="Uniform">
                         <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="5" Height="25" Fill="Black" Margin="2"/>
-                            <Rectangle Width="5" Height="25" Fill="Black" Margin="2"/>
+                            <Rectangle Width="5" Height="25" Fill="{Binding PauseButtonFill, Converter={StaticResource ColourInterpreterConvertor}}" Margin="2"/>
+                            <Rectangle Width="5" Height="25" Fill="{Binding PauseButtonFill, Converter={StaticResource ColourInterpreterConvertor}}" Margin="2"/>
                         </StackPanel>
                     </Viewbox>
                 </Button.Content>
@@ -68,8 +75,8 @@
                                 </TransformGroup>
                             </Viewbox.RenderTransform>
                             <StackPanel Orientation="Horizontal">
-                                <Rectangle Width="5" Height="25" Fill="Black" Margin="2"/>
-                                <Polygon Points="20, 2, 20, 27, 0, 14.5" Fill="Black"/>
+                                <Rectangle Width="5" Height="25" Fill="{Binding SkipToEndButtonFill, Converter={StaticResource ColourInterpreterConvertor}}" Margin="2"/>
+                                <Polygon Points="20, 2, 20, 27, 0, 14.5" Fill="{Binding SkipToEndButtonFill, Converter={StaticResource ColourInterpreterConvertor}}"/>
                             </StackPanel>
                         </Viewbox>
                     </StackPanel>
@@ -79,8 +86,8 @@
                 <Button.Content>
                     <Viewbox Stretch="Uniform">
                         <StackPanel>
-                            <Polygon Points="0, 13, 20, 13, 10, 2" Fill="Black"/>
-                            <Rectangle Width="20" Height="5" Fill="Black" Margin="0,2,0,2"/>
+                            <Polygon Points="0, 13, 20, 13, 10, 2" Fill="{Binding SelectButtonFill, Converter={StaticResource ColourInterpreterConvertor}}"/>
+                            <Rectangle Width="20" Height="5" Fill="{Binding SelectButtonFill, Converter={StaticResource ColourInterpreterConvertor}}" Margin="0,2,0,2"/>
                         </StackPanel>
                     </Viewbox>
                 </Button.Content>
@@ -96,8 +103,8 @@
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Content" Value="Autoplay ON" />
-                            <Setter Property="Background" Value="#62e3f6" />
-                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Background" Value="{Binding SwitchOnBackground, Converter={StaticResource ColourInterpreterConvertor}}" />
+                            <Setter Property="Foreground" Value="{Binding SwitchForeground, Converter={StaticResource ColourInterpreterConvertor}}" />
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
@@ -115,7 +122,7 @@
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsAutoPlayChecked}" Value="False">
                                     <Setter Property="Content" Value="Autoplay OFF" />
-                                    <Setter Property="Background" Value="#000040" />
+                                    <Setter Property="Background" Value="{Binding SwitchOffBackground, Converter={StaticResource ColourInterpreterConvertor}}" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -128,8 +135,8 @@
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Content" Value="Loop play ON"/>
-                            <Setter Property="Background" Value="#62e3f6"/>
-                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="{Binding SwitchOnBackground, Converter={StaticResource ColourInterpreterConvertor}}"/>
+                            <Setter Property="Foreground" Value="{Binding SwitchForeground, Converter={StaticResource ColourInterpreterConvertor}}"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
@@ -146,7 +153,7 @@
                             </Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsLoopPlayChecked}" Value="False">
-                                    <Setter Property="Background" Value="#000040"/>
+                                    <Setter Property="Background" Value="{Binding SwitchOffBackground, Converter={StaticResource ColourInterpreterConvertor}}"/>
                                     <Setter Property="Content" Value="Loop play OFF"/>
                                 </DataTrigger>
                             </Style.Triggers>
