@@ -203,6 +203,25 @@ namespace WpfAudioControlLibrary.Controls
             set => SetValue(IsUseCustomOverDriveSettingProperty, value);
         }
 
+        public static readonly DependencyProperty NeedleThicknessProperty =
+            DependencyProperty.Register("NeedleThickness", typeof(double?), typeof(VUControl), new PropertyMetadata(null, (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
+            {
+                if (dependencyObj is VUControl control
+                && control.DataContext is VUControlViewModel viewModel)
+                {
+                    viewModel.NeedleThickness = (double?)args.NewValue;
+                }
+            }));
+        public double? NeedleThickness
+        {
+            get => (double?)GetValue(NeedleThicknessProperty);
+            set => SetValue(NeedleThicknessProperty, value);
+        }
+
+        #endregion
+
+        #region Style Properties
+
         public static readonly DependencyProperty BackgroundColourProperty =
             DependencyProperty.Register("BackgroundColour", typeof(string), typeof(VUControl), new PropertyMetadata("Transparent", (DependencyObject dependencyObj, DependencyPropertyChangedEventArgs args) =>
             {

@@ -15,7 +15,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -249,6 +248,24 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
             }
         }
 
+        private double? _needleThickness;
+        public double? NeedleThickness
+        {
+            get => _needleThickness;
+            set
+            {
+                _needleThickness = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        public int InternalFsd => _internalFsd;
+
+        #endregion
+
+        #region Style Properties
+
         public string _backgroundColour;
         public string BackgroundColour
         {
@@ -333,8 +350,6 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
             }
         }
 
-        public int InternalFsd => _internalFsd;
-
         #endregion
 
         public VUControlViewModel(double defaultMmin, double defaultMax)
@@ -343,6 +358,7 @@ namespace WpfAudioControlLibrary.Controls.ViewModels
             SetRatioMapToInternalRange();
             Value = defaultMmin;
             IsOverDrive = false;
+            NeedleThickness = 4;
 
             // Sanity colours so something shows by default.
             BackgroundColour = "DodgerBlue";

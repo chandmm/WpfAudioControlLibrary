@@ -114,7 +114,7 @@
                       X2="{Binding X, FallbackValue=200}" 
                       Y2="{Binding Y, FallbackValue=120}"
                       Stroke="{Binding NeedleColour, Converter={StaticResource ColourInterpreterConvertor}}" 
-                      StrokeThickness="4" IsHitTestVisible="False" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Disabled" UseLayoutRounding="False"/>
+                      StrokeThickness="{Binding NeedleThickness}" IsHitTestVisible="False" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Disabled" UseLayoutRounding="False"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Rectangle Fill="{Binding BottomCoverFill, Converter={StaticResource ColourInterpreterConvertor}}" 
