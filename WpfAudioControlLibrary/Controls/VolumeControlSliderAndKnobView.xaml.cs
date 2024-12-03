@@ -22,13 +22,13 @@ using System.Windows.Controls;
 
 namespace WpfAudioControlLibrary.Controls
 {
-    public partial class VolumeControlView : UserControl, INotifyPropertyChanged
+    public partial class VolumeControlSliderAndKnobView : UserControl, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
         // Default for Value is 0 to represent null/default startup state.
         public static readonly DependencyProperty VolumeProperty =
-            DependencyProperty.Register("Volume", typeof(int), typeof(VolumeControlView),
+            DependencyProperty.Register("Volume", typeof(int), typeof(VolumeControlSliderAndKnobView),
                 new PropertyMetadata(0, OnValueChanged)); 
         public int Volume
         {
@@ -37,7 +37,7 @@ namespace WpfAudioControlLibrary.Controls
         }
 
         public static readonly DependencyProperty ControlLabelProperty =
-            DependencyProperty.Register("ControlLabel", typeof(string), typeof(VolumeControlView),
+            DependencyProperty.Register("ControlLabel", typeof(string), typeof(VolumeControlSliderAndKnobView),
                 new PropertyMetadata("Volume", null)); 
 
         public string ControlLabel
@@ -47,7 +47,7 @@ namespace WpfAudioControlLibrary.Controls
         }
 
         public static readonly DependencyProperty MaxProperty =
-            DependencyProperty.Register("Max", typeof(int), typeof(VolumeControlView),
+            DependencyProperty.Register("Max", typeof(int), typeof(VolumeControlSliderAndKnobView),
                 new PropertyMetadata(100, OnValueChanged)); 
 
         public int Max
@@ -57,13 +57,23 @@ namespace WpfAudioControlLibrary.Controls
         }
 
         public static readonly DependencyProperty MinProperty =
-            DependencyProperty.Register("Min", typeof(int), typeof(VolumeControlView),
+            DependencyProperty.Register("Min", typeof(int), typeof(VolumeControlSliderAndKnobView),
                 new PropertyMetadata(0, OnValueChanged)); 
 
         public int Min
         {
             get { return (int)GetValue(MinProperty); }
             set { SetValue(MinProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsShowVolumeKnobProperty =
+            DependencyProperty.Register("IsShowVolumeKnob", typeof(bool), typeof(VolumeControlSliderAndKnobView),
+                new PropertyMetadata(false, OnValueChanged));
+
+        public bool IsShowVolumeKnob
+        {
+            get { return (bool)GetValue(IsShowVolumeKnobProperty); }
+            set { SetValue(IsShowVolumeKnobProperty, value); }
         }
 
         private Point _position;
@@ -90,7 +100,7 @@ namespace WpfAudioControlLibrary.Controls
             }
         }
 
-        public VolumeControlView()
+        public VolumeControlSliderAndKnobView()
         {
             DataContext = this;
             
@@ -103,7 +113,7 @@ namespace WpfAudioControlLibrary.Controls
 
         private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var control = (VolumeControlView)d;
+            var control = (VolumeControlSliderAndKnobView)d;
             control.UpdateLinePosition();
         }
 
